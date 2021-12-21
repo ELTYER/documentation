@@ -59,75 +59,27 @@ const Layout = props => {
     const {children} = props;
     const classes = useStyles();
     const sideNavClasses = useSideNavStyles();
-    const [headerColor, setHeaderColor] = React.useState('transparent');
-    const [drawerWidth, setDrawerWidth] = React.useState(0);
-
-    useEffect(() => {
-        if (pathname.includes('/documentation/') || pathname.includes('/development')) {
-            setHeaderColor('#ffffff');
-        } else {
-            setHeaderColor('transparent');
-        }
-    }, [pathname]);
-
-    useEffect(() => {
-        if (pathname.includes('/documentation/') || pathname.includes('/development')) {
-            setDrawerWidth(drawerWidth);
-        } else {
-            setDrawerWidth(0);
-        }
-    });
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-        window.onscroll = function() {
-
-            if (!pathname.includes('/documentation/') && !pathname.includes('/development')) {
-                if (window.pageYOffset === 0) {
-                    setHeaderColor('transparent');
-                } else {
-                    setHeaderColor('default');
-                }
-            }
-        }
-    }, [pathname]);
-
-    const showSubHeader = () => {
-        if(pathname === undefined) {
-            return false
-        }
-        return !(!pathname.includes('/documentation/') && !pathname.includes('/development'));
-    }
-
-    const showDrawer = () => {
-        if(pathname === undefined) {
-            return false
-        }
-        return pathname.includes('/documentation/') || pathname.includes('/development');
-    }
 
     return (
         <>
-            <AppBar className={classes.appBar} color={headerColor} elevation={headerColor === "transparent"? 0 : 1} position={"sticky"}>
+            <AppBar className={classes.appBar} position={"sticky"} color={"default"}>
                 <HeaderContent/>
             </AppBar>
-            {showDrawer() &&
-                <Drawer
-                    variant="permanent"
-                    ModalProps={{
-                        keepMounted: true,
-                    }}
-                    className={sideNavClasses.drawer}
-                >
-                    <SideNavContent/>
-                </Drawer>
-            }
-            <div className={clsx(showDrawer() && classes.contentShift)}>
+            <Drawer
+                variant="permanent"
+                ModalProps={{
+                    keepMounted: true,
+                }}
+                className={sideNavClasses.drawer}
+            >
+                <SideNavContent/>
+            </Drawer>
+            <div>
                 {children}
             </div>
             <br/>
             <br/>
-            <Footer drawerOpen={showDrawer()}/>
+            <Footer drawerOpen/>
         </>
     );
 };
