@@ -1,10 +1,7 @@
 import React from 'react';
-import Grid from "@material-ui/core/Grid";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from '@material-ui/core/Typography';
-import {makeStyles} from "@material-ui/core/styles";
 import {CustomTabSecondary, CustomTabsSecondary} from "../tabs";
 import {useRouter} from "next/router";
+import {Grid, Typography} from "@mui/material";
 
 
 const useStyles = makeStyles(theme => ({
@@ -46,11 +43,11 @@ const DocumentationSubHeaderContent = props => {
     const initialValue = () => {
         const {pathname} = router;
 
-        if(pathname.includes('/documentation/overview')) {
+        if(pathname.includes('/investing-algorithm-framework-plugin/overview')) {
             return 0;
-        } else if(pathname.includes('/documentation/guides/overview')) {
+        } else if(pathname.includes('/investing-algorithm-framework-plugin/guides/overview')) {
             return 1;
-        } else if(pathname.includes('/documentation/framework-features/overview')) {
+        } else if(pathname.includes('/investing-algorithm-framework-plugin/framework-features/overview')) {
             return 2;
         }
         return 0;
@@ -62,11 +59,11 @@ const DocumentationSubHeaderContent = props => {
         setValue(newValue);
 
         if(newValue === 0) {
-            router.push('/documentation/general/overview');
+            router.push('/investing-algorithm-framework-plugin/general/overview');
         } else if(newValue === 1) {
-            router.push('/documentation/guides/overview');
+            router.push('/investing-algorithm-framework-plugin/guides/overview');
         } else if(newValue === 2) {
-            router.push('/documentation/framework-features/overview');
+            router.push('/investing-algorithm-framework-plugin/framework-features/overview');
         }
     };
 
@@ -106,11 +103,11 @@ const DevelopmentSubSubHeaderContent = props => {
     const initialValue = () => {
         const {pathname} = router;
 
-        if(pathname.includes('/development/general/')) {
+        if(pathname.includes('/python-client/general/')) {
             return 0;
-        } else if(pathname.includes('/development/framework/')) {
+        } else if(pathname.includes('/python-client/framework/')) {
             return 1;
-        } else if(pathname.includes('/development/documentation/')) {
+        } else if(pathname.includes('/python-client/investing-algorithm-framework-plugin/')) {
             return 2;
         }
         return 0;
@@ -122,11 +119,11 @@ const DevelopmentSubSubHeaderContent = props => {
         setValue(newValue);
 
         if(newValue === 0) {
-            router.push('/development/general/overview');
+            router.push('/python-client/general/overview');
         } else if(newValue === 1) {
-            router.push('/development/framework/overview');
+            router.push('/python-client/framework/overview');
         } else if(newValue === 2) {
-            router.push('/development/documentation/overview');
+            router.push('/python-client/investing-algorithm-framework-plugin/overview');
         }
     };
 
@@ -164,9 +161,9 @@ function SubHeaderContent (props) {
     const router = useRouter();
     const {pathname} = router;
 
-    if(pathname.includes('/development/')) {
+    if(pathname.includes('/python-client/')) {
         return <DevelopmentSubSubHeaderContent {...props}/>
-    } else if(pathname.includes('/documentation/')) {
+    } else if(pathname.includes('/investing-algorithm-framework-plugin/')) {
         return <DocumentationSubHeaderContent {...props}/>;
     }
     return null;

@@ -1,17 +1,10 @@
 import React, {useState} from 'react';
-import { useRouter } from 'next/router'
-import Typography from "@material-ui/core/Typography";
-import ListItem from "@material-ui/core/ListItem";
-import {ListItemText} from "@material-ui/core";
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import Collapse from '@material-ui/core/Collapse';
-import List from '@material-ui/core/List';
-import Grid from "@material-ui/core/Grid";
+import {useRouter} from 'next/router'
 import {useSideNavStyles, useTypographyStyles} from "../styles";
-import Toolbar from "@material-ui/core/Toolbar";
 import clsx from "clsx";
 import Link from "../Link";
+import {Collapse, ListItem, ListItemText, Toolbar, Typography} from "@mui/material";
+import {ExpandLess, ExpandMore, List} from "@mui/icons-material";
 
 const SideNavContent = () => {
     const typographyClasses = useTypographyStyles();
@@ -46,7 +39,7 @@ const SideNavContent = () => {
                             className={
                                 clsx(
                                     sideNavClasses.sideNavItem,
-                                    !introductionOpen && isActive('/documentation/introduction') && sideNavClasses.sideNavListItemActive
+                                    !introductionOpen && isActive('/investing-algorithm-framework-plugin/introduction') && sideNavClasses.sideNavListItemActive
                                 )
                             }
                         >
@@ -63,7 +56,7 @@ const SideNavContent = () => {
                             <List component="div" disablePadding>
                                 <ListItem
                                     component={Link}
-                                    href={'/documentation/introduction/getting-started'}
+                                    href={'/investing-algorithm-framework-plugin/introduction/getting-started'}
                                     button
                                     className={
                                         clsx(
@@ -81,7 +74,7 @@ const SideNavContent = () => {
                                 </ListItem>
                                 <ListItem
                                     component={Link}
-                                    href={'/documentation/introduction/installation'}
+                                    href={'/investing-algorithm-framework-plugin/introduction/installation'}
                                     button
                                     className={
                                         clsx(
@@ -105,7 +98,7 @@ const SideNavContent = () => {
                             className={
                                 clsx(
                                     sideNavClasses.sideNavItem,
-                                    !tutorialsOpen && isActive('/documentation/tutorials') && sideNavClasses.sideNavListItemActive
+                                    !tutorialsOpen && isActive('/investing-algorithm-framework-plugin/tutorials') && sideNavClasses.sideNavListItemActive
                                 )
                             }
                         >
@@ -125,7 +118,7 @@ const SideNavContent = () => {
                                     className={
                                         clsx(
                                             sideNavClasses.nestedSideNavItem,
-                                            !fundamentalsOpen && isActive('/documentation/tutorials/fundamentals') && sideNavClasses.sideNavListItemActive
+                                            !fundamentalsOpen && isActive('/investing-algorithm-framework-plugin/tutorials/fundamentals') && sideNavClasses.sideNavListItemActive
                                         )
                                     }
                                     onClick={() => setFundamentalsOpen(!fundamentalsOpen)}
@@ -148,7 +141,7 @@ const SideNavContent = () => {
                                                 )
                                             }
                                             component={Link}
-                                            href={'/documentation/tutorials/fundamentals/core-concepts'}
+                                            href={'/investing-algorithm-framework-plugin/tutorials/fundamentals/core-concepts'}
                                             naked
                                         >
                                             <ListItemText disableTypography>
@@ -166,7 +159,7 @@ const SideNavContent = () => {
                                                 )
                                             }
                                             component={Link}
-                                            href={'/documentation/tutorials/fundamentals/algorithm-context'}
+                                            href={'/investing-algorithm-framework-plugin/tutorials/fundamentals/algorithm-context'}
                                             naked
                                         >
                                             <ListItemText disableTypography>
@@ -184,7 +177,7 @@ const SideNavContent = () => {
                                                 )
                                             }
                                             component={Link}
-                                            href={'/documentation/tutorials/fundamentals/data-providers'}
+                                            href={'/investing-algorithm-framework-plugin/tutorials/fundamentals/data-providers'}
                                             naked
                                         >
                                             <ListItemText disableTypography>
@@ -202,7 +195,7 @@ const SideNavContent = () => {
                                                 )
                                             }
                                             component={Link}
-                                            href={'/documentation/tutorials/fundamentals/strategies'}
+                                            href={'/investing-algorithm-framework-plugin/tutorials/fundamentals/strategies'}
                                             naked
                                         >
                                             <ListItemText disableTypography>
@@ -220,7 +213,7 @@ const SideNavContent = () => {
                                                 )
                                             }
                                             component={Link}
-                                            href={'/documentation/tutorials/fundamentals/order-executors'}
+                                            href={'/investing-algorithm-framework-plugin/tutorials/fundamentals/order-executors'}
                                             naked
                                         >
                                             <ListItemText disableTypography>
@@ -238,7 +231,7 @@ const SideNavContent = () => {
                                                 )
                                             }
                                             component={Link}
-                                            href={'/documentation/tutorials/fundamentals/portfolio-managers'}
+                                            href={'/investing-algorithm-framework-plugin/tutorials/fundamentals/portfolio-managers'}
                                             naked
                                         >
                                             <ListItemText disableTypography>
@@ -272,7 +265,7 @@ const SideNavContent = () => {
                                                 )
                                             }
                                             component={Link}
-                                            href={'/documentation/tutorials/recipes/overview'}
+                                            href={'/investing-algorithm-framework-plugin/tutorials/recipes/overview'}
                                             naked
                                         >
                                             <ListItemText disableTypography>
@@ -290,7 +283,7 @@ const SideNavContent = () => {
                                                 )
                                             }
                                             component={Link}
-                                            href={'/documentation/tutorials/recipes/moving-average'}
+                                            href={'/investing-algorithm-framework-plugin/tutorials/recipes/moving-average'}
                                             naked
                                         >
                                             <ListItemText disableTypography>
@@ -308,7 +301,7 @@ const SideNavContent = () => {
                                                 )
                                             }
                                             component={Link}
-                                            href={'/documentation/tutorials/recipes/telegram-integration'}
+                                            href={'/investing-algorithm-framework-plugin/tutorials/recipes/telegram-integration'}
                                             naked
                                         >
                                             <ListItemText disableTypography>
@@ -326,7 +319,7 @@ const SideNavContent = () => {
                                                 )
                                             }
                                             component={Link}
-                                            href={'/documentation/tutorials/recipes/digitalocean-deployment'}
+                                            href={'/investing-algorithm-framework-plugin/tutorials/recipes/digitalocean-deployment'}
                                             naked
                                         >
                                             <ListItemText disableTypography>
@@ -350,7 +343,7 @@ const SideNavContent = () => {
         <div className={sideNavClasses.sideNavContainer}>
             <Toolbar/>
             <br/>
-            {pathname.includes('/documentation/') && renderDocumentationSideNav()}
+            {pathname.includes('/investing-algorithm-framework-plugin/') && renderDocumentationSideNav()}
         </div>
     );
 };

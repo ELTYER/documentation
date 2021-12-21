@@ -1,11 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import ReactMarkdown from "react-markdown";
 import PropTypes from "prop-types";
 import CodeBlock from "./CodeBlock";
 import MarkdownLink from "./MarkdownLink";
 import MarkdownBlockQuote from "./MarkdownBlockQuote";
 import HeaderMarkdownRenderer from "./HeaderMarkdown";
-import TextMarkdownRenderer from "./TextMarkdown";
 
 const MarkdownArticle = props => {
 

@@ -1,9 +1,32 @@
-import React from 'react';
-import Tab from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
-import {withStyles} from "@material-ui/core/styles";
+import React from "react";
+import PropTypes from "prop-types";
+import {Tab, Tabs, useMediaQuery} from "@mui/material";
+import {withStyles} from "@mui/styles";
+
+function a11yProps(index) {
+    return {
+        id: `full-width-tab-${index}`,
+        'aria-controls': `full-width-tabpanel-${index}`,
+    };
+}
+
+const CustomTab = withStyles((theme) => ({
+    root: {
+        textTransform: "none",
+        [theme.breakpoints.only('sm')]: {
+            fontSize: 14,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 10,
+        },
+        fontSize: 16
+    }
+}))(Tab);
 
 export const CustomTabs = withStyles(theme => ({
+    root: {
+        borderBottom: '2px solid #e8e8e8',
+    },
     indicator: {
         display: "flex",
         justifyContent: "center",
@@ -13,79 +36,35 @@ export const CustomTabs = withStyles(theme => ({
             borderTopLeftRadius: 3,
             borderTopRightRadius: 3,
             maxWidth: 40,
-            marginRight: 10,
             width: "100%",
             backgroundColor: theme.palette.primary.main
         }
     }
 }))(props => <Tabs {...props} TabIndicatorProps={{ children: <div /> }} />);
 
-export const CustomTab = withStyles((theme) => ({
+const SwipeableTabs = props => {
+    const {labels} = props;
+    const xs = useMediaQuery(theme => theme.breakpoints.only("xs"));
 
-    root: {
-        textTransform: 'none',
-        minWidth: 40,
-        marginRight: theme.spacing(4),
-        fontWeight: theme.typography.fontWeightRegular,
-        fontSize: theme.typography.pxToRem(15),
-        paddingLeft: 0,
-        marginLeft: 0,
-        '&:hover': {
-            color: theme.palette.primary.light,
-            opacity: 1,
-        },
-        "&$selected": {
-            color: theme.palette.primary.main,
-            fontWeight: theme.typography.fontWeightMedium
-        },
-    },
-    wrapper: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-    },
-    selected: {}
-}))((props) => <Tab disableRipple {...props} />);
+    return (
+        <>
+            <CustomTabs
+                value={0}
+                indicatorColor="primary"
+                textColor="primary"
+                variant={xs? "fullWidth" : "standard"}
+                aria-label="full width tabs example"
+            >
+                {labels.map((label, index) =>
+                    <CustomTab key={index} wrapped label={label} {...a11yProps(index)} />
+                )}
+            </CustomTabs>
+        </>
+    )
+}
 
-export const CustomTabsSecondary = withStyles(theme => ({
-    indicator: {
-        display: "flex",
-        justifyContent: "center",
-        backgroundColor: "transparent",
-        height: 3,
-        "& > div": {
-            borderTopLeftRadius: 3,
-            borderTopRightRadius: 3,
-            maxWidth: 40,
-            marginRight: 10,
-            width: "100%",
-            backgroundColor: '#fafafa',
-        }
-    }
-}))(props => <Tabs {...props} TabIndicatorProps={{ children: <div /> }} />);
+SwipeableTabs.propTypes = {
+    labels: PropTypes.arrayOf(PropTypes.string).isRequired
+};
 
-export const CustomTabSecondary = withStyles((theme) => ({
-
-    root: {
-        textTransform: 'none',
-        minWidth: 40,
-        marginRight: theme.spacing(4),
-        fontWeight: theme.typography.fontWeightRegular,
-        fontSize: theme.typography.pxToRem(15),
-        color: '#212121',
-        paddingLeft: 0,
-        marginLeft: 0,
-        '&:hover': {
-            color: '#eeeeee',
-            opacity: 1,
-        },
-        "&$selected": {
-            color: '#fafafa',
-            fontWeight: theme.typography.fontWeightMedium
-        },
-    },
-    wrapper: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-    },
-    selected: {}
-}))((props) => <Tab disableRipple {...props} />);
+export default SwipeableTabs;

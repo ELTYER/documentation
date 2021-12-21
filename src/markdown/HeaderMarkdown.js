@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactMarkdown from "react-markdown";
-import Typography from "@material-ui/core/Typography";
 import {useTypographyStyles} from "../styles";
+import {Typography} from "@mui/material";
 
 const HeaderMarkdownRenderer = props => {
     const typographyClasses = useTypographyStyles();

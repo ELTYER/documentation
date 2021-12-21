@@ -1,11 +1,10 @@
 import React from 'react';
-import Typography from "@material-ui/core/Typography";
 import {useTypographyStyles} from "../styles";
+import {Typography} from "@mui/material";
 
 const TextMarkdownRenderer = props => {
     const typographyClasses = useTypographyStyles();
 
-    console.log(props)
     return (
         <Typography className={typographyClasses.body}>
             {props.children}

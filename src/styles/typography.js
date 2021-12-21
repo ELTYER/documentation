@@ -1,12 +1,41 @@
-import make
+import {makeStyles} from "@mui/styles";
+
 export const useTypographyStyles = makeStyles((theme) => ({
     pageHeader: {
         fontSize: 28,
-        color: '#222222'
+        color: theme.palette.textPrimary,
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 20,
+        },
+        [theme.breakpoints.up('sm')]: {
+            fontSize: 24,
+        },
+        [theme.breakpoints.up('lg')]: {
+            fontSize: 28,
+        },
+    },
+    pageHeaderSuccess: {
+        fontSize: 28,
+        color: theme.palette.success.main,
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 20,
+        },
+        [theme.breakpoints.up('sm')]: {
+            fontSize: 24,
+        },
+        [theme.breakpoints.up('lg')]: {
+            fontSize: 28,
+        },
     },
     sectionHeader: {
-        fontSize: 26,
-        color: '#222222'
+        fontSize: 24,
+        color: theme.palette.textPrimary,
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 20,
+        },
+        [theme.breakpoints.down('xs')]: {
+            fontSize: 18,
+        },
     },
     sectionHeaderSecond: {
         fontSize: 24,
@@ -28,35 +57,403 @@ export const useTypographyStyles = makeStyles((theme) => ({
         fontSize: 18,
         color: '#FFFFFF'
     },
-    installText: {
-        fontSize: 36,
-        lineHeight: 1.7,
-        '&:message': {
-            '&:cursor': {
-                show: false,
-                blink: true,
-                element: '|',
-                hideWhenDone: false,
-                hideWhenDoneDelay: 1000,
-            }
+    appBarLogo: {
+        fontFamily: 'Lexend Giga',
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 13,
+        },
+        [theme.breakpoints.up('sm')]: {
+            fontSize: 16,
+        },
+        [theme.breakpoints.up('lg')]: {
+            fontSize: 24,
         }
     },
-    largeBody: {
-        fontSize: 16,
-        color: '#a4a4a4'
+    appBarLogoSecondary: {
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 13,
+        },
+        [theme.breakpoints.up('sm')]: {
+            fontSize: 16,
+        },
+        [theme.breakpoints.up('lg')]: {
+            fontSize: 24,
+        },
+        color: theme.palette.textSecondary
+    },
+    sectionHeaderPrimary: {
+        fontSize: 24,
+        color: theme.palette.primary.main,
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 20,
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 14,
+        },
+    },
+    sectionHeaderSecondary: {
+        fontSize: 24,
+        color: theme.palette.secondary.main,
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 20,
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 14,
+        },
+    },
+    sectionHeaderWarning: {
+        fontSize: 24,
+        color: theme.palette.warning.main,
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 20,
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 14,
+        },
+    },
+    sectionHeaderDanger: {
+        fontSize: 24,
+        color: theme.palette.error.main,
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 20,
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 14,
+        },
+    },
+    sectionHeaderSuccess: {
+        fontSize: 24,
+        color: theme.palette.success.main,
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 20,
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 14,
+        },
+    },
+    sectionHeaderRed: {
+        fontSize: 24,
+        color: theme.palette.error.main,
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 20,
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 14,
+        },
+    },
+    sectionHeaderTwo: {
+        fontSize: 22,
+        color: theme.palette.textPrimary,
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 18,
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 12,
+        },
+    },
+    sectionHeaderTwoPrimary: {
+        fontSize: 22,
+        color: theme.palette.primary.main,
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 18,
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 12,
+        },
+    },
+    sectionHeaderTwoSuccess: {
+        fontSize: 22,
+        color: theme.palette.success.main,
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 18,
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 12,
+        },
+    },
+    sectionHeaderTwoWarning: {
+        fontSize: 22,
+        color: theme.palette.warning.main,
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 18,
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 12,
+        },
+    },
+    sectionHeaderTwoWhite: {
+        fontSize: 22,
+        color: theme.palette.white,
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 18,
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 12,
+        },
+    },
+    sectionHeaderTwoDanger: {
+        fontSize: 22,
+        color: theme.palette.error.main,
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 18,
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 12,
+        },
     },
     headerBody: {
-        fontSize: 14,
-        color: '#222222'
+        fontSize: 20,
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 16,
+        },
+        [theme.breakpoints.down('xs')]: {
+            fontSize: 11,
+        },
+        color: theme.palette.textPrimary
+    },
+    headerBodyPrimary: {
+        fontSize: 20,
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 16,
+        },
+        [theme.breakpoints.down('xs')]: {
+            fontSize: 11,
+        },
+        color: theme.palette.primary.main
+    },
+    headerBodyTwo: {
+        fontSize: 18,
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 16,
+        },
+        [theme.breakpoints.down('xs')]: {
+            fontSize: 11,
+        },
+        color: theme.palette.textPrimary
     },
     body: {
-        fontSize: 14,
-        color: '#494949'
+        [theme.breakpoints.only('md')]: {
+            fontSize: 13,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 10,
+        },
+        fontSize: 15,
+        color: theme.palette.textPrimary
+    },
+    bodyWhite: {
+        [theme.breakpoints.only('md')]: {
+            fontSize: 13,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 10,
+        },
+        fontSize: 15,
+        color: `${theme.palette.backgroundWhite.main}`
+    },
+    bodySecondary: {
+        [theme.breakpoints.only('md')]: {
+            fontSize: 13,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 10,
+        },
+        fontSize: 15,
+        color: theme.palette.secondary.main
+    },
+    bodySecondaryText: {
+        [theme.breakpoints.only('md')]: {
+            fontSize: 13,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 10,
+        },
+        fontSize: 15,
+        color: theme.palette.text.secondary
+    },
+    bodyPrimary: {
+        [theme.breakpoints.only('md')]: {
+            fontSize: 13,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 10,
+        },
+        fontSize: 15,
+        color: theme.palette.primary.main
+    },
+    bodyDanger: {
+        [theme.breakpoints.only('md')]: {
+            fontSize: 13,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 10,
+        },
+        fontSize: 15,
+        color: theme.palette.error.main
+    },
+    bodySuccess: {
+        [theme.breakpoints.only('md')]: {
+            fontSize: 13,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 10,
+        },
+        fontSize: 15,
+        color: theme.palette.success.main
+    },
+    bodyDisabled: {
+        [theme.breakpoints.only('md')]: {
+            fontSize: 13,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 10,
+        },
+        fontSize: 15,
+        color: theme.palette.text.disabled
+    },
+    bodyError: {
+        [theme.breakpoints.only('md')]: {
+            fontSize: 13,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 10,
+        },
+        fontSize: 15,
+        color: theme.palette.error.main
+    },
+    bodyWarning: {
+        [theme.breakpoints.only('md')]: {
+            fontSize: 13,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 10,
+        },
+        fontSize: 15,
+        color: theme.palette.warning.main
     },
     boldBody: {
-        fontSize: 14,
+        [theme.breakpoints.only('md')]: {
+            fontSize: 13,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 10,
+        },
+        fontSize: 15,
         fontWeight: "bold",
-        color: '#757575'
+        color: theme.palette.textPrimary
+    },
+    boldBodySecondary: {
+        [theme.breakpoints.only('md')]: {
+            fontSize: 13,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 10,
+        },
+        fontSize: 15,
+        fontWeight: "bold",
+        color: theme.palette.textSecondary
+    },
+    largeBoldBodyPrimary: {
+        [theme.breakpoints.only('md')]: {
+            fontSize: 18,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 16,
+        },
+        fontSize: 20,
+        fontWeight: "bold",
+        color: theme.palette.primary.main
+    },
+    largeBody: {
+        [theme.breakpoints.only('md')]: {
+            fontSize: 18,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 16,
+        },
+        fontSize: 20,
+        color: theme.palette.textPrimary
+    },
+    largeBodyBold: {
+        [theme.breakpoints.only('md')]: {
+            fontSize: 18,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 16,
+        },
+        fontSize: 20,
+        color: theme.palette.textPrimary,
+        fontWeight: "bold",
+    },
+    largeBodySecondary: {
+        [theme.breakpoints.only('md')]: {
+            fontSize: 18,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 16,
+        },
+        fontSize: 20,
+        color: theme.palette.textSecondary
+    },
+    largeBodyPrimary: {
+        [theme.breakpoints.only('md')]: {
+            fontSize: 18,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 16,
+        },
+        fontSize: 20,
+        color: theme.palette.primary.main
+    },
+    largeBodyWhite: {
+        [theme.breakpoints.only('md')]: {
+            fontSize: 18,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 16,
+        },
+        fontSize: 20,
+        color: theme.palette.white
+    },
+    largeBodyError: {
+        [theme.breakpoints.only('md')]: {
+            fontSize: 18,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 16,
+        },
+        fontSize: 20,
+        color: theme.palette.error.main
+    },
+    largeBodySuccess: {
+        [theme.breakpoints.only('md')]: {
+            fontSize: 18,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 16,
+        },
+        fontSize: 20,
+        color: theme.palette.success.main
+    },
+    largeBodyDisabled: {
+        [theme.breakpoints.only('md')]: {
+            fontSize: 18,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 16,
+        },
+        fontSize: 20,
+        color: theme.palette.success.main
+    },
+    largeBodyWarning: {
+        [theme.breakpoints.only('md')]: {
+            fontSize: 18,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 16,
+        },
+        fontSize: 20,
+        color: theme.palette.warning.main
     },
     organizationDropdownHelpText: {
         fontSize: 14
@@ -68,11 +465,16 @@ export const useTypographyStyles = makeStyles((theme) => ({
     organizationDropdownUnSelected: {
         fontSize: 12,
     },
-    listItemHeaderText: {
-        fontSize: 14,
-    },
     listItemText: {
+        fontSize: 14,
+        transition: theme.transitions.create(['width', 'margin'], {
+            easing: theme.transitions.easing.easeIn,
+            duration: 200,
+        }),
+    },
+    listHeaderItemText: {
         fontSize: 12,
+        color: theme.palette.textPrimary
     },
     listItemActiveText: {
         fontSize: 14,
@@ -81,7 +483,109 @@ export const useTypographyStyles = makeStyles((theme) => ({
             color: theme.palette.primary.main,
         },
     },
-    codingKittiesHeader: {
-        fontSize: 40,
-    }
+    sideNavItemText: {
+        color: theme.palette.textPrimary,
+        fontSize: 14,
+    },
+    sideNavItemActiveText: {
+        color: theme.palette.primary.main,
+        fontSize: 14,
+    },
+    sideNavIcon: {
+        color: theme.palette.textPrimary
+    },
+    sideNavActiveIcon: {
+        color: theme.palette.primary.main,
+    },
+    underlineText: {
+        color: theme.palette.primary.main,
+        fontSize: 10
+    },
+    greenChange: {
+        fontSize: 16,
+        color: theme.palette.success.main
+    },
+    smallBody: {
+        fontSize: 12,
+        color: theme.palette.textPrimary,
+        [theme.breakpoints.only('md')]: {
+            fontSize: 10,
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 8,
+        },
+    },
+    smallBodyWhite: {
+        fontSize: 12,
+        color: '#FFFFFF',
+        [theme.breakpoints.only('md')]: {
+            fontSize: 10,
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 8,
+        },
+    },
+    smallBodySecondaryText: {
+        fontSize: 12,
+        color: theme.palette.textSecondary,
+        [theme.breakpoints.only('md')]: {
+            fontSize: 10,
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 8,
+        },
+    },
+    smallBodySuccess: {
+        fontSize: 12,
+        color: theme.palette.success.main,
+        [theme.breakpoints.only('md')]: {
+            fontSize: 10,
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 8,
+        },
+    },
+    smallBodyWarning: {
+        fontSize: 12,
+        color: theme.palette.warning.main,
+        [theme.breakpoints.only('md')]: {
+            fontSize: 10,
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 8,
+        },
+    },
+    smallBodyError: {
+        fontSize: 12,
+        color: theme.palette.error.main,
+        [theme.breakpoints.only('md')]: {
+            fontSize: 10,
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 8,
+        },
+    },
+    smallBodyPrimary: {
+        fontSize: 10,
+        color: theme.palette.primary.main,
+        [theme.breakpoints.only('md')]: {
+            fontSize: 10,
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 8,
+        },
+    },
+    smallBodySecondary: {
+        fontSize: 12,
+        color: theme.palette.secondary.main,
+        [theme.breakpoints.only('md')]: {
+            fontSize: 10,
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 8,
+        },
+    },
+    sectionHeaderMargin: {
+        marginBottom: theme.spacing(1)
+    },
 }));
