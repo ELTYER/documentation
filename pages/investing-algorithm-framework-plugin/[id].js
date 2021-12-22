@@ -2,9 +2,11 @@ import React from "react";
 import glob from 'glob';
 import MarkdownArticle from "../../src/markdown/MarkdownArticle";
 import {Contributing} from "../../src/components/articles";
+import {useDispatch, useSelector} from "react-redux";
+import {pageLoadingActions} from "../../src/redux/actions";
+import {wrapper} from "../../src/redux/store";
 
-
-const MarkdownPage = ({markdown, articleSrc}) => {
+const View = ({markdown, articleSrc}) => {
 
     return (
         <>
@@ -15,6 +17,16 @@ const MarkdownPage = ({markdown, articleSrc}) => {
     )
 }
 
+const DataContainer = ({markdown, articleSrc}) => {
+    const dispatch = useDispatch();
+    const loading = useSelector(state => state.loading.pageLoading);
+
+    if(loading) {
+        dispatch(pageLoadingActions.finished());
+    }
+
+    return <View markdown={markdown} articleSrc={articleSrc}/>
+}
 
 // This function gets called at build time
 export async function getStaticPaths() {
@@ -29,11 +41,12 @@ export async function getStaticPaths() {
     return { paths, fallback: false }
 }
 
-// This also gets called at build time
-export async function getStaticProps({ params }) {
-    const markdown = await require(`../../src/articles/investing_algorithm_framework_plugin/${params.id}.md`);
-    let articleSrc = `https://github.com/eltyer/blob/master/src/articles/investing_algorithm_framework_plugin/${params.id}.md`
-    return { props: { markdown: markdown.default, articleSrc: articleSrc} }
-}
+export const getStaticProps = wrapper.getStaticProps((store) =>
+    async ({ req, res, ...etc }) => {
+        const markdown = await require(`../../src/articles/investing_algorithm_framework_plugin/${etc.params.id}.md`);
+        let articleSrc = `https://github.com/eltyer/blob/master/src/articles/investing_algorithm_framework_plugin/${etc.params.id}.md`
+        return { props: { markdown: markdown.default, articleSrc: articleSrc} }
+    }
+);
 
-export default MarkdownPage;
+export default DataContainer;

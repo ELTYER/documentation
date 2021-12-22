@@ -20,15 +20,14 @@ const HeaderContent = props => {
     const typographyClasses = useTypographyStyles();
 
     return (
-        <Toolbar>
-            <Stack
-                direction="row"
-                justifyContent="space-between"
-                alignItems="center"
-                spacing={2}
-                style={{width: "100%"}}
-            >
-                <AppLogo label={"Documentation"}/>
+        <Stack
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
+            style={{width: "100%"}}
+        >
+            <AppLogo label={"Documentation"}/>
+            <Toolbar>
                 <Button
                     className={buttonClasses.standardButton}
                     startIcon={<FontAwesomeIcon className={classes.githubIcon} icon={faGithub}/>}
@@ -38,8 +37,8 @@ const HeaderContent = props => {
                         Github
                     </Typography>
                 </Button>
-            </Stack>
-        </Toolbar>
+            </Toolbar>
+        </Stack>
     )
 };
 

@@ -3,13 +3,17 @@ import React from "react";
 import {useRouter} from "next/router";
 import {useSideNavStyles, useTypographyStyles} from "../../styles";
 import {ListItem, ListItemText, Typography} from "@mui/material";
+import {useDispatch} from "react-redux";
+import {pageLoadingActions} from "../../redux/actions";
 
 export const SideNavIndentedTextItem = ({item}) => {
     const router = useRouter();
     const sideNavClasses = useSideNavStyles();
     const typographyClasses = useTypographyStyles();
+    const dispatch = useDispatch();
 
     const handleClick = () => {
+        dispatch(pageLoadingActions.start())
         router.push(item.href)
     }
 

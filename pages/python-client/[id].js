@@ -2,9 +2,13 @@ import React from "react";
 import glob from 'glob';
 import MarkdownArticle from "../../src/markdown/MarkdownArticle";
 import {Contributing} from "../../src/components/articles";
+import {pageLoadingActions} from "../../src/redux/actions";
+import {useDispatch, useSelector} from "react-redux";
+import {wrapper} from "../../src/redux/store";
+import {consumeIterator} from "next/dist/build/babel/loader/util";
 
 
-const MarkdownPage = ({markdown, articleSrc}) => {
+const View = ({markdown, articleSrc}) => {
 
     return (
         <>
@@ -13,6 +17,17 @@ const MarkdownPage = ({markdown, articleSrc}) => {
             <Contributing source={articleSrc}/>
         </>
     )
+}
+
+const DataContainer = ({markdown, articleSrc}) => {
+    const dispatch = useDispatch();
+    const loading = useSelector(state => state.loading.pageLoading);
+
+    if(loading) {
+        dispatch(pageLoadingActions.finished());
+    }
+
+    return <View markdown={markdown} articleSrc={articleSrc}/>
 }
 
 // This function gets called at build time
@@ -28,11 +43,12 @@ export async function getStaticPaths() {
     return { paths, fallback: false }
 }
 
-// This also gets called at build time
-export async function getStaticProps({ params }) {
-    const markdown = await require(`../../src/articles/python_client/${params.id}.md`);
-    let articleSrc = `https://github.com/eltyer/blob/master/src/articles/python_client/${params.id}.md`
-    return { props: { markdown: markdown.default, articleSrc: articleSrc} }
-}
+export const getStaticProps = wrapper.getStaticProps((store) =>
+    async ({ req, res, ...etc }) => {
+        const markdown = await require(`../../src/articles/python_client/${etc.params.id}.md`);
+        let articleSrc = `https://github.com/eltyer/blob/master/src/articles/python_client/${etc.params.id}.md`
+        return { props: { markdown: markdown.default, articleSrc: articleSrc} }
+    }
+);
 
-export default MarkdownPage;
+export default DataContainer;

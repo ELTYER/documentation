@@ -1,13 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Layout from "../src/layout";
-import {useRouter} from "next/router";
+import {useRouter, withRouter} from "next/router";
 import {CssBaseline, ThemeProvider} from "@mui/material";
 import theme from "../src/styles/theme";
+import {wrapper} from '../src/redux/store';
 
 
-export default function MyApp(props) {
+const MyApp = (props) => {
     const { Component, pageProps } = props;
     const router = useRouter();
 
@@ -36,7 +36,4 @@ export default function MyApp(props) {
     );
 }
 
-MyApp.propTypes = {
-    Component: PropTypes.elementType.isRequired,
-    pageProps: PropTypes.object.isRequired,
-};
+export default wrapper.withRedux(withRouter(MyApp));

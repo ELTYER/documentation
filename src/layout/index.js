@@ -8,6 +8,8 @@ import {makeStyles} from "@mui/styles";
 import clsx from "clsx";
 import {SideNav} from "./side_navs";
 import {SIDE_NAV_ITEMS} from "../configuration";
+import {useSelector} from "react-redux";
+import CircleProgress from "../components/loading/CircleProgress";
 
 const drawerWidth = 256;
 
@@ -54,11 +56,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Layout = props => {
-    const router = useRouter();
     const {children} = props;
     const classes = useStyles();
-    const sideNavClasses = useSideNavStyles();
     const layoutClasses = useLayoutStyles();
+    const pageLoading = useSelector(state => state.loading.pageLoading);
 
     const getSideNavItems = () => {
         return [
@@ -147,7 +148,7 @@ const Layout = props => {
                 </AppBar>
                 <SideNav sideNavItems={getSideNavItems()} sideNavOpen/>
                 <Container component="main" sx={{ mt: 8, mb: 2 }} maxWidth="md">
-                    {children}
+                    {pageLoading? <CircleProgress/> : children}
                 </Container>
                 <Box
                     className={clsx(layoutClasses.contentShiftRight, layoutClasses.footer)}
