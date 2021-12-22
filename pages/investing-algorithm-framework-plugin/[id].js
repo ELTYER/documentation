@@ -33,7 +33,7 @@ export async function getStaticPaths() {
     const articles = glob.sync("./src/articles/investing_algorithm_framework_plugin/*.md");
 
     const paths = articles.map((article) => {
-        let pathName = article.split("./static/articles/investing_algorithm_framework_plugin/")[1]
+        let pathName = article.split("./src/articles/investing_algorithm_framework_plugin/")[1]
         pathName = pathName.split(".md")[0]
         return `/investing-algorithm-framework-plugin/${pathName}`;
     })
