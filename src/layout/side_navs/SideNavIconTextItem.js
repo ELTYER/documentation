@@ -3,7 +3,7 @@ import React from "react";
 import {useSideNavStyles, useTypographyStyles} from "../../styles";
 import {useRouter} from "next/router";
 import {Box, ListItem, Typography} from "@mui/material";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {pageLoadingActions} from "../../redux/actions";
 
 
@@ -12,14 +12,15 @@ export const SideNavIconTextItem = ({item}) => {
     const typographyClasses = useTypographyStyles();
     const router = useRouter();
     const dispatch = useDispatch();
+    const sideNavValue = useSelector(state => state.layout.sideNavValue);
+
+    const isActive = () => {
+        return item.id === sideNavValue;
+    }
 
     const handleClick = () => {
         dispatch(pageLoadingActions.start());
         router.push(item.href)
-    }
-
-    const isActive = () => {
-        return false;
     }
 
     return (

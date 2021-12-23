@@ -29,6 +29,10 @@ export const useLogoStyles = makeStyles((theme) => ({
         height: "60px",
         width: "60px",
     },
+    appLogoXsSmall: {
+        height: "25px",
+        width: "25px",
+    },
     appLogoSmall: {
         height: "35px",
         width: "35px",
@@ -40,6 +44,9 @@ export const useLogoStyles = makeStyles((theme) => ({
     appLogoLarge: {
         height: "60px",
         width: "60px",
+    },
+    appTextXsSmall: {
+        height: "15px",
     },
     appTextSmall: {
         height: "20px",

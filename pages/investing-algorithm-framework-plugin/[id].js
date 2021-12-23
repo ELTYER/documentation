@@ -3,7 +3,7 @@ import glob from 'glob';
 import MarkdownArticle from "../../src/markdown/MarkdownArticle";
 import {Contributing} from "../../src/components/articles";
 import {useDispatch, useSelector} from "react-redux";
-import {pageLoadingActions} from "../../src/redux/actions";
+import {pageLoadingActions, sideNavValueAction} from "../../src/redux/actions";
 import {wrapper} from "../../src/redux/store";
 
 const View = ({markdown, articleSrc}) => {
@@ -45,6 +45,7 @@ export const getStaticProps = wrapper.getStaticProps((store) =>
     async ({ req, res, ...etc }) => {
         const markdown = await require(`../../src/articles/investing_algorithm_framework_plugin/${etc.params.id}.md`);
         let articleSrc = `https://github.com/eltyer/blob/master/src/articles/investing_algorithm_framework_plugin/${etc.params.id}.md`
+        store.dispatch(sideNavValueAction(`investing-algorithm-framework-plugin-${etc.params.id}`));
         return { props: { markdown: markdown.default, articleSrc: articleSrc} }
     }
 );

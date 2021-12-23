@@ -2,7 +2,7 @@ import React from "react";
 import glob from 'glob';
 import MarkdownArticle from "../../src/markdown/MarkdownArticle";
 import {Contributing} from "../../src/components/articles";
-import {pageLoadingActions} from "../../src/redux/actions";
+import {pageLoadingActions, sideNavValueAction} from "../../src/redux/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {wrapper} from "../../src/redux/store";
 import {consumeIterator} from "next/dist/build/babel/loader/util";
@@ -47,6 +47,7 @@ export const getStaticProps = wrapper.getStaticProps((store) =>
     async ({ req, res, ...etc }) => {
         const markdown = await require(`../../src/articles/python_client/${etc.params.id}.md`);
         let articleSrc = `https://github.com/eltyer/blob/master/src/articles/python_client/${etc.params.id}.md`
+        store.dispatch(sideNavValueAction(`python-client-${etc.params.id}`));
         return { props: { markdown: markdown.default, articleSrc: articleSrc} }
     }
 );

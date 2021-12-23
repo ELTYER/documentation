@@ -72,24 +72,28 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export const AppLogo = ({sideNavItem = false, showText = true, clickAble = true, label = null, size = null}) => {
+export const AppLogo = ({sideNavItem = false, showText = true, clickAble = true, label = null, size = null, showEnvironmentText = false}) => {
     const classes = useStyles();
-    const router = useRouter();
     const typographyClasses = useTypographyStyles();
-    const paperClasses = usePaperStyles();
+    const router = useRouter();
     const logoClasses = useLogoStyles();
     const theme = useTheme();
-    const smDown = useMediaQuery(theme.breakpoints.down("sm"));
+    const sm = useMediaQuery(theme.breakpoints.only("sm"));
+    const xs = useMediaQuery(theme.breakpoints.only("xs"))
 
     const getLogoClasses = () => {
 
         if(size === null) {
-            if(smDown) {
+            if(xs) {
+                return logoClasses.appLogoXsSmall
+            } else if(sm) {
                 return logoClasses.appLogoSmall;
             }
         }
 
-        if(size === "small") {
+        if(size === "xsSmall") {
+            return logoClasses.appLogoXsSmall;
+        } else if(size === "small") {
             return logoClasses.appLogoSmall;
         } else if(size === "large") {
             return logoClasses.appLogoLarge;
@@ -101,7 +105,9 @@ export const AppLogo = ({sideNavItem = false, showText = true, clickAble = true,
     const getLogoTextClasses = () => {
 
         if(size === null) {
-            if(smDown) {
+            if(xs) {
+                return logoClasses.appTextXsSmall
+            } else if(sm) {
                 return logoClasses.appTextSmall;
             }
         }
@@ -137,7 +143,7 @@ export const AppLogo = ({sideNavItem = false, showText = true, clickAble = true,
 
     if(!showText && sideNavItem) {
         return (
-            <ButtonBase disabled={!clickAble} className={classes.smallButtonBaseSideNav}>
+            <ButtonBase href={"https://eltyer.com"} disabled={!clickAble} className={classes.smallButtonBaseSideNav}>
                 <Stack
                     direction="row"
                     justifyContent="flex-start"
@@ -161,7 +167,7 @@ export const AppLogo = ({sideNavItem = false, showText = true, clickAble = true,
                 justifyContent="flex-start"
                 alignItems="center"
             >
-                <ButtonBase disabled={!clickAble} className={classes.largeButtonBaseSideNav}>
+                <ButtonBase href={"https://eltyer.com"} disabled={!clickAble} className={classes.largeButtonBaseSideNav}>
                     <Stack
                         direction="row"
                         justifyContent="flex-start"
@@ -174,30 +180,18 @@ export const AppLogo = ({sideNavItem = false, showText = true, clickAble = true,
                             src={"/logos/app/default_icon.svg"}
                             height={label !== null ? "35px" : "40px"}
                         />
-                        <Stack
-                            direction="column"
-                            justifyContent="flex-end"
-                            alignItems="flex-end"
-                            style={{marginBottom: "-14px"}}
-                        >
-                            <img
-                                alt={"eltyer-logo"}
-                                src={"/logos/app/text.svg"}
-                                className={getLogoTextClasses()}
-                            />
-                            <Paper className={paperClasses.textPaper} style={{marginTop: "-4px", marginRight: "-20px"}}>
-                                <Typography className={typographyClasses.underlineText}>
-                                    Alpha
-                                </Typography>
-                            </Paper>
-                        </Stack>
+                        <img
+                            alt={"eltyer-logo"}
+                            src={"/logos/app/text.svg"}
+                            className={getLogoTextClasses()}
+                        />
                         {label !== null &&
-                        <>
-                            <Divider orientation={"vertical"} style={{height: "25px"}}/>
-                            <Typography className={typographyClasses.largeBody} style={{marginLeft: "8px"}}>
-                                {label}
-                            </Typography>
-                        </>
+                            <>
+                                <Divider orientation={"vertical"} style={{height: "25px"}}/>
+                                <Typography className={typographyClasses.sectionHeader} style={{marginLeft: "8px"}}>
+                                    {label}
+                                </Typography>
+                            </>
                         }
                     </Stack>
                 </ButtonBase>
@@ -211,7 +205,7 @@ export const AppLogo = ({sideNavItem = false, showText = true, clickAble = true,
             justifyContent="flex-start"
             alignItems="center"
         >
-            <ButtonBase disabled={!clickAble} className={classes.largeButtonBase}>
+            <ButtonBase href={"https://eltyer.com"} disabled={!clickAble} className={classes.largeButtonBase}>
                 <Stack
                     direction="row"
                     justifyContent="flex-start"

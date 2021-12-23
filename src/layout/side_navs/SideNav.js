@@ -1,6 +1,6 @@
 import React from "react";
 import {useRouter} from "next/router";
-import {useSideNavStyles, useTypographyStyles} from "../../styles";
+import {useLayoutStyles, useSideNavStyles, useTypographyStyles} from "../../styles";
 import {AppLogo} from "../../components/logos";
 import {SIDE_NAV_ITEMS} from "../../configuration";
 import {SideNavNestedItem} from "./SideNavNestedItem";
@@ -16,20 +16,24 @@ import {SideNavIconTextItem} from "./SideNavIconTextItem";
 import {Drawer, IconButton, List, NoSsr, Stack, SwipeableDrawer, useMediaQuery, useTheme} from "@mui/material";
 import {makeStyles} from "@mui/styles";
 import CloseIcon from '@mui/icons-material/Close';
+import clsx from "clsx";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     drawerPaper: {
-        width: '100%',
+        width: theme.drawerWidth
     },
+    mobileDrawer: {
+        width: '100%',
+    }
 }));
 
-export const SideNav = ({sideNavItems, footerItems, sideNavOpen, handleSideNavOpenClick, showAppLogo=true, appLogoLabel = null}) => {
+export const SideNav = ({sideNavItems, footerItems, sideNavOpen = false, handleSideNavOpenClick, showAppLogo=true, appLogoLabel = "Documentation"}) => {
     const classes = useStyles();
-    const typographyClasses = useTypographyStyles();
     const sideNavClasses = useSideNavStyles();
     const router = useRouter();
     const theme = useTheme();
     const smDown = useMediaQuery(theme.breakpoints.down("sm"));
+    const layoutClasses = useLayoutStyles();
 
     const handleLogoClick = () => {
         router.push('/');
@@ -74,8 +78,9 @@ export const SideNav = ({sideNavItems, footerItems, sideNavOpen, handleSideNavOp
                     onOpen={() => handleSideNavOpenClick(true)}
                     onClose={() => handleSideNavOpenClick(false)}
                     classes={{
-                        paper: classes.drawerPaper,
+                        paper: classes.mobileDrawer,
                     }}
+                    className={clsx(sideNavOpen? layoutClasses.contentShiftRight : layoutClasses.contentShiftLeft)}
                 >
                     <Stack
                         direction="row"
@@ -86,7 +91,7 @@ export const SideNav = ({sideNavItems, footerItems, sideNavOpen, handleSideNavOp
                         <div style={{"overflow": "hidden"}}>
                             <AppLogo sideNavItem showText handleClick={handleLogoClick} label={appLogoLabel}/>
                         </div>
-                        <IconButton onClick={() => handleSideNavOpenClick(false)}>
+                        <IconButton onClick={() => handleSideNavOpenClick(false)} style={{marginRight: "4px"}}>
                             <CloseIcon/>
                         </IconButton>
                     </Stack>

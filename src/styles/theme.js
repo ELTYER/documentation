@@ -65,7 +65,7 @@ const theme = createTheme({
         textPrimary: "#666666", // to be deprecated
         textSecondary: "#949494", // to be deprecated
     },
-    drawerWidth: "230px"
+    drawerWidth: "300px"
 });
 
 export default theme

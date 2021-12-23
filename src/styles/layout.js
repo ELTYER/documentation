@@ -29,7 +29,6 @@ export const useLayoutStyles = makeStyles(theme => ({
     },
     contentShiftRight: {
         [theme.breakpoints.up('md')]: {
-            marginLeft: theme.drawerWidth,
             maxWidth: `calc(100% - ${theme.drawerWidth}px)`,
             transition: theme.transitions.create(['width', 'margin'], {
                 easing: theme.transitions.easing.sharp,
@@ -38,8 +37,9 @@ export const useLayoutStyles = makeStyles(theme => ({
         }
     },
     contentShiftLeft: {
+        marginLeft: theme.drawerWidth,
         [theme.breakpoints.up('md')]: {
-                transition: theme.transitions.create(['width', 'margin'], {
+            transition: theme.transitions.create(['width', 'margin'], {
                 easing: theme.transitions.easing.sharp,
                 duration: theme.transitions.duration.enteringScreen,
             }),

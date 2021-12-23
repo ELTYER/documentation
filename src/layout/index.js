@@ -3,55 +3,27 @@ import {useRouter} from "next/router";
 import HeaderContent from "./HeaderContent";
 import Footer from "./Footer";
 import {useLayoutStyles, useSideNavStyles} from "../styles";
-import {AppBar, Box, Container} from "@mui/material";
+import {AppBar, Box, Container, useMediaQuery, useTheme} from "@mui/material";
 import {makeStyles} from "@mui/styles";
 import clsx from "clsx";
 import {SideNav} from "./side_navs";
 import {SIDE_NAV_ITEMS} from "../configuration";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import CircleProgress from "../components/loading/CircleProgress";
+import {sideNavOpenAction} from "../redux/actions";
 
 const drawerWidth = 256;
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
-        zIndex: theme.zIndex.drawer + 2,
+        zIndex: theme.zIndex.drawer + 1,
+    },
+    appBarMobile: {
+        zIndex: theme.zIndex.drawer - 1,
     },
     appBarSecond: {
         zIndex: theme.zIndex.drawer + 1,
         backgroundColor: theme.palette.primary.light
-    },
-    appBarSpacer: theme.mixins.toolbar,
-    toolbar: theme.mixins.toolbar,
-    drawer: {
-        width: drawerWidth,
-        flexShrink: 0,
-    },
-    drawerPaper: {
-        width: drawerWidth,
-    },
-    drawerContainer: {
-        overflow: 'auto',
-    },
-    content: {
-        flexGrow: 1,
-        justify: "center",
-        transition: theme.transitions.create(['width', 'margin'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-    },
-    contentShift: {
-        marginLeft: theme.drawerWidth,
-        width: `calc(100% - ${theme.drawerWidth}px)`,
-        transition: theme.transitions.create(['width', 'margin'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    },
-    container: {
-        paddingTop: theme.spacing(4),
-        paddingBottom: theme.spacing(4),
     },
 }));
 
@@ -59,7 +31,20 @@ const Layout = props => {
     const {children} = props;
     const classes = useStyles();
     const layoutClasses = useLayoutStyles();
+    const theme = useTheme();
     const pageLoading = useSelector(state => state.loading.pageLoading);
+    const smDown = useMediaQuery(theme.breakpoints.down("sm"));
+    const dispatch = useDispatch();
+    const sideNavOpen = useSelector(state => state.layout.sideNavOpen);
+
+    const getSideNavOpen = () => {
+
+        if(!smDown) {
+            return true;
+        }
+
+        return sideNavOpen;
+    }
 
     const getSideNavItems = () => {
         return [
@@ -68,11 +53,12 @@ const Layout = props => {
                 itemStyle: SIDE_NAV_ITEMS.spacer,
             },
             {
-                id: 'spacerOne',
-                itemStyle: SIDE_NAV_ITEMS.spacer,
+                id: 'eltyer-platform',
+                label: 'Eltyer Platform',
+                itemStyle: SIDE_NAV_ITEMS.header,
             },
             {
-                id: 'introduction',
+                id: 'home',
                 label: 'Introduction',
                 itemStyle: SIDE_NAV_ITEMS.text,
                 href: "/"
@@ -84,7 +70,7 @@ const Layout = props => {
                 href: "/platform"
             },
             {
-                id: 'small-spacer',
+                id: 'small-spacer-one',
                 itemStyle: SIDE_NAV_ITEMS.smallSpacer,
             },
             {
@@ -98,22 +84,22 @@ const Layout = props => {
                 itemStyle: SIDE_NAV_ITEMS.nested,
                 children: [
                     {
-                        id: 'introduction',
+                        id: 'python-client-introduction',
                         label: 'Introduction',
                         href: '/python-client/introduction',
                     },
                     {
-                        id: 'orders',
+                        id: 'python-client-orders',
                         label: 'Orders',
                         href: '/python-client/orders',
                     },
                     {
-                        id: 'positions',
+                        id: 'python-client-positions',
                         label: 'Positions',
                         href: '/python-client/positions',
                     },
                     {
-                        id: 'portfolio',
+                        id: 'python-client-portfolio',
                         label: 'Portfolio',
                         href: '/python-client/portfolio',
                     },
@@ -125,13 +111,17 @@ const Layout = props => {
                 itemStyle: SIDE_NAV_ITEMS.nested,
                 children: [
                     {
-                        id: 'introduction',
+                        id: 'investing-algorithm-framework-plugin-introduction',
                         label: 'Introduction',
                         href: '/investing-algorithm-framework-plugin/introduction',
                     },
                 ]
             },
         ]
+    }
+
+    const handleSideNavOpenClick = () => {
+        dispatch(sideNavOpenAction(!sideNavOpen));
     }
 
     return (
@@ -143,15 +133,21 @@ const Layout = props => {
                     minHeight: '100vh',
                 }}
             >
-                <AppBar className={classes.appBar} position={"sticky"} color={"default"}>
-                    <HeaderContent/>
+                <AppBar className={clsx(smDown? classes.appBarMobile : classes.appBar)} position={"sticky"} color={"default"}>
+                    <HeaderContent handleSideNavOpenClick={handleSideNavOpenClick}/>
                 </AppBar>
-                <SideNav sideNavItems={getSideNavItems()} sideNavOpen/>
-                <Container component="main" sx={{ mt: 8, mb: 2 }} maxWidth="md">
-                    {pageLoading? <CircleProgress/> : children}
-                </Container>
+                <SideNav
+                    sideNavItems={getSideNavItems()}
+                    sideNavOpen={getSideNavOpen()}
+                    handleSideNavOpenClick={handleSideNavOpenClick}
+                />
+                <div className={clsx(getSideNavOpen()? layoutClasses.contentShiftLeft : layoutClasses.contentShiftRight)}>
+                    <Container component="main" sx={{ mt: 8, mb: 2 }} maxWidth="md">
+                        {pageLoading? <CircleProgress/> : children}
+                    </Container>
+                </div>
                 <Box
-                    className={clsx(layoutClasses.contentShiftRight, layoutClasses.footer)}
+                    className={clsx(getSideNavOpen()? layoutClasses.contentShiftLeft : layoutClasses.contentShiftRight, layoutClasses.footer)}
                     component="footer"
                     sx={{
                         justifyContent: 'center',
@@ -165,7 +161,7 @@ const Layout = props => {
                     }}
                 >
                     <Container>
-                        <Footer sideNavOpen/>
+                        <Footer/>
                     </Container>
                 </Box>
             </Box>

@@ -1,5 +1,5 @@
 export * from "./paper";
-export * from "./sideNav";
+export * from "./sidenav";
 export * from "./typography";
 export * from "./button";
 export * from "./logos";

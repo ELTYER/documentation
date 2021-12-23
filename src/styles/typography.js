@@ -30,11 +30,14 @@ export const useTypographyStyles = makeStyles((theme) => ({
     sectionHeader: {
         fontSize: 24,
         color: theme.palette.textPrimary,
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.only('md')]: {
             fontSize: 20,
         },
-        [theme.breakpoints.down('xs')]: {
-            fontSize: 18,
+        [theme.breakpoints.only('sm')]: {
+            fontSize: 16,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 14,
         },
     },
     sectionHeaderSecond: {
@@ -232,110 +235,110 @@ export const useTypographyStyles = makeStyles((theme) => ({
         color: theme.palette.textPrimary
     },
     body: {
-        [theme.breakpoints.only('md')]: {
+        [theme.breakpoints.down('lg')]: {
             fontSize: 13,
         },
-        [theme.breakpoints.only('xs')]: {
+        [theme.breakpoints.down('xs')]: {
             fontSize: 10,
         },
         fontSize: 15,
         color: theme.palette.textPrimary
     },
     bodyWhite: {
-        [theme.breakpoints.only('md')]: {
+        [theme.breakpoints.down('lg')]: {
             fontSize: 13,
         },
-        [theme.breakpoints.only('xs')]: {
+        [theme.breakpoints.down('xs')]: {
             fontSize: 10,
         },
         fontSize: 15,
         color: `${theme.palette.backgroundWhite.main}`
     },
     bodySecondary: {
-        [theme.breakpoints.only('md')]: {
+        [theme.breakpoints.down('lg')]: {
             fontSize: 13,
         },
-        [theme.breakpoints.only('xs')]: {
+        [theme.breakpoints.down('xs')]: {
             fontSize: 10,
         },
         fontSize: 15,
         color: theme.palette.secondary.main
     },
     bodySecondaryText: {
-        [theme.breakpoints.only('md')]: {
+        [theme.breakpoints.down('lg')]: {
             fontSize: 13,
         },
-        [theme.breakpoints.only('xs')]: {
+        [theme.breakpoints.down('xs')]: {
             fontSize: 10,
         },
         fontSize: 15,
         color: theme.palette.text.secondary
     },
     bodyPrimary: {
-        [theme.breakpoints.only('md')]: {
+        [theme.breakpoints.down('lg')]: {
             fontSize: 13,
         },
-        [theme.breakpoints.only('xs')]: {
+        [theme.breakpoints.down('xs')]: {
             fontSize: 10,
         },
         fontSize: 15,
         color: theme.palette.primary.main
     },
     bodyDanger: {
-        [theme.breakpoints.only('md')]: {
+        [theme.breakpoints.down('lg')]: {
             fontSize: 13,
         },
-        [theme.breakpoints.only('xs')]: {
+        [theme.breakpoints.down('xs')]: {
             fontSize: 10,
         },
         fontSize: 15,
         color: theme.palette.error.main
     },
     bodySuccess: {
-        [theme.breakpoints.only('md')]: {
+        [theme.breakpoints.down('lg')]: {
             fontSize: 13,
         },
-        [theme.breakpoints.only('xs')]: {
+        [theme.breakpoints.down('xs')]: {
             fontSize: 10,
         },
         fontSize: 15,
         color: theme.palette.success.main
     },
     bodyDisabled: {
-        [theme.breakpoints.only('md')]: {
+        [theme.breakpoints.down('lg')]: {
             fontSize: 13,
         },
-        [theme.breakpoints.only('xs')]: {
+        [theme.breakpoints.down('xs')]: {
             fontSize: 10,
         },
         fontSize: 15,
         color: theme.palette.text.disabled
     },
     bodyError: {
-        [theme.breakpoints.only('md')]: {
+        [theme.breakpoints.down('lg')]: {
             fontSize: 13,
         },
-        [theme.breakpoints.only('xs')]: {
+        [theme.breakpoints.down('xs')]: {
             fontSize: 10,
         },
         fontSize: 15,
         color: theme.palette.error.main
     },
     bodyWarning: {
-        [theme.breakpoints.only('md')]: {
+        [theme.breakpoints.down('lg')]: {
             fontSize: 13,
         },
-        [theme.breakpoints.only('xs')]: {
+        [theme.breakpoints.down('xs')]: {
             fontSize: 10,
         },
         fontSize: 15,
         color: theme.palette.warning.main
     },
     boldBody: {
-        [theme.breakpoints.only('md')]: {
+        [theme.breakpoints.down('lg')]: {
             fontSize: 13,
         },
-        [theme.breakpoints.only('xs')]: {
+        [theme.breakpoints.down('xs')]: {
             fontSize: 10,
         },
         fontSize: 15,
@@ -343,10 +346,10 @@ export const useTypographyStyles = makeStyles((theme) => ({
         color: theme.palette.textPrimary
     },
     boldBodySecondary: {
-        [theme.breakpoints.only('md')]: {
+        [theme.breakpoints.down('lg')]: {
             fontSize: 13,
         },
-        [theme.breakpoints.only('xs')]: {
+        [theme.breakpoints.down('xs')]: {
             fontSize: 10,
         },
         fontSize: 15,
@@ -368,8 +371,11 @@ export const useTypographyStyles = makeStyles((theme) => ({
         [theme.breakpoints.only('md')]: {
             fontSize: 18,
         },
-        [theme.breakpoints.only('xs')]: {
+        [theme.breakpoints.only('sm')]: {
             fontSize: 16,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 14,
         },
         fontSize: 20,
         color: theme.palette.textPrimary
@@ -378,8 +384,11 @@ export const useTypographyStyles = makeStyles((theme) => ({
         [theme.breakpoints.only('md')]: {
             fontSize: 18,
         },
-        [theme.breakpoints.only('xs')]: {
+        [theme.breakpoints.only('sm')]: {
             fontSize: 16,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 14,
         },
         fontSize: 20,
         color: theme.palette.textPrimary,
@@ -389,8 +398,11 @@ export const useTypographyStyles = makeStyles((theme) => ({
         [theme.breakpoints.only('md')]: {
             fontSize: 18,
         },
-        [theme.breakpoints.only('xs')]: {
+        [theme.breakpoints.only('sm')]: {
             fontSize: 16,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 14,
         },
         fontSize: 20,
         color: theme.palette.textSecondary
@@ -399,8 +411,11 @@ export const useTypographyStyles = makeStyles((theme) => ({
         [theme.breakpoints.only('md')]: {
             fontSize: 18,
         },
-        [theme.breakpoints.only('xs')]: {
+        [theme.breakpoints.only('sm')]: {
             fontSize: 16,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 14,
         },
         fontSize: 20,
         color: theme.palette.primary.main
@@ -409,8 +424,11 @@ export const useTypographyStyles = makeStyles((theme) => ({
         [theme.breakpoints.only('md')]: {
             fontSize: 18,
         },
-        [theme.breakpoints.only('xs')]: {
+        [theme.breakpoints.only('sm')]: {
             fontSize: 16,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 14,
         },
         fontSize: 20,
         color: theme.palette.white
@@ -419,8 +437,11 @@ export const useTypographyStyles = makeStyles((theme) => ({
         [theme.breakpoints.only('md')]: {
             fontSize: 18,
         },
-        [theme.breakpoints.only('xs')]: {
+        [theme.breakpoints.only('sm')]: {
             fontSize: 16,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 14,
         },
         fontSize: 20,
         color: theme.palette.error.main
@@ -429,8 +450,11 @@ export const useTypographyStyles = makeStyles((theme) => ({
         [theme.breakpoints.only('md')]: {
             fontSize: 18,
         },
-        [theme.breakpoints.only('xs')]: {
+        [theme.breakpoints.only('sm')]: {
             fontSize: 16,
+        },
+        [theme.breakpoints.only('xs')]: {
+            fontSize: 14,
         },
         fontSize: 20,
         color: theme.palette.success.main
