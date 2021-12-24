@@ -75,11 +75,10 @@ const useStyles = makeStyles(theme => ({
 export const AppLogo = ({sideNavItem = false, showText = true, clickAble = true, label = null, size = null, showEnvironmentText = false}) => {
     const classes = useStyles();
     const typographyClasses = useTypographyStyles();
-    const router = useRouter();
     const logoClasses = useLogoStyles();
     const theme = useTheme();
     const sm = useMediaQuery(theme.breakpoints.only("sm"));
-    const xs = useMediaQuery(theme.breakpoints.only("xs"))
+    const xs = useMediaQuery(theme.breakpoints.only("xs"));
 
     const getLogoClasses = () => {
 
