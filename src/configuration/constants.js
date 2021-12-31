@@ -12,3 +12,9 @@ export const SIDE_NAV_ITEMS = {
     smallSpacer: "smallSpacer",
     icon: "icon"
 }
+
+export const APP_TITLE = "ELTYER | Documentation";
+export const APP_DESCRIPTION = "Documentation for the ELTYER platform. The marketplace for high-quality trading bots deployed on " +
+    "reliable infrastructure."
+export const SEO_IMAGE = "/logos/app/default_icon.svg";
+export const SEO_URL = "https://eltyer.com";

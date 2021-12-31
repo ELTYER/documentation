@@ -4,6 +4,7 @@ import {Contributing} from "../src/components/articles";
 import {useDispatch, useSelector} from "react-redux";
 import {pageLoadingActions, sideNavValueAction} from "../src/redux/actions";
 import {wrapper} from "../src/redux/store";
+import {setSEOVariablesAction} from "../src/redux/actions/seo";
 
 const View = ({markdown, articleSrc}) => {
 
@@ -32,6 +33,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) =>
         const markdown = await require(`../src/articles/platform.md`);
         let articleSrc = `https://github.com/eltyer/documentation/blob/master/src/articles/platform.md`
         store.dispatch(sideNavValueAction("platform"));
+        store.dispatch(setSEOVariablesAction("Platform"));
         return { props: { markdown: markdown.default, articleSrc: articleSrc} }
     }
 );

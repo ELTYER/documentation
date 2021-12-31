@@ -5,6 +5,7 @@ import {Contributing} from "../../src/components/articles";
 import {useDispatch, useSelector} from "react-redux";
 import {pageLoadingActions, sideNavValueAction} from "../../src/redux/actions";
 import {wrapper} from "../../src/redux/store";
+import {setSEOVariablesAction} from "../../src/redux/actions/seo";
 
 const View = ({markdown, articleSrc}) => {
 
@@ -46,6 +47,7 @@ export const getStaticProps = wrapper.getStaticProps((store) =>
         const markdown = await require(`../../src/articles/investing_algorithm_framework_plugin/${etc.params.id}.md`);
         let articleSrc = `https://github.com/eltyer/blob/master/src/articles/investing_algorithm_framework_plugin/${etc.params.id}.md`
         store.dispatch(sideNavValueAction(`investing-algorithm-framework-plugin-${etc.params.id}`));
+        store.dispatch(setSEOVariablesAction("Investing Algorithm Framework Plugin"));
         return { props: { markdown: markdown.default, articleSrc: articleSrc} }
     }
 );

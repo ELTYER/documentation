@@ -15,3 +15,4 @@ export function createLoadingTypes(base) {
 
 export * from "./loading";
 export * from "./layout";
+export * from "./seo";

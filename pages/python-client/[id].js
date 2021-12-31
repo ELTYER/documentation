@@ -6,6 +6,7 @@ import {pageLoadingActions, sideNavValueAction} from "../../src/redux/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {wrapper} from "../../src/redux/store";
 import {consumeIterator} from "next/dist/build/babel/loader/util";
+import {setSEOVariablesAction} from "../../src/redux/actions/seo";
 
 
 const View = ({markdown, articleSrc}) => {
@@ -48,6 +49,7 @@ export const getStaticProps = wrapper.getStaticProps((store) =>
         const markdown = await require(`../../src/articles/python_client/${etc.params.id}.md`);
         let articleSrc = `https://github.com/eltyer/blob/master/src/articles/python_client/${etc.params.id}.md`
         store.dispatch(sideNavValueAction(`python-client-${etc.params.id}`));
+        store.dispatch(setSEOVariablesAction("Python Client"));
         return { props: { markdown: markdown.default, articleSrc: articleSrc} }
     }
 );

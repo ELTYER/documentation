@@ -1,4 +1,4 @@
-import {PAGE_LOADING} from "../types/loading";
+import {PAGE_LOADING} from "../types";
 import {FINISHED, STARTED} from "../types";
 
 let initialState = {

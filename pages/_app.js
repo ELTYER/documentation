@@ -5,11 +5,13 @@ import {useRouter, withRouter} from "next/router";
 import {CssBaseline, ThemeProvider} from "@mui/material";
 import theme from "../src/styles/theme";
 import {wrapper} from '../src/redux/store';
+import {SEOHead} from "../src/layout/SEO";
+import {useSelector} from "react-redux";
 
 
 const MyApp = (props) => {
     const { Component, pageProps } = props;
-    const router = useRouter();
+    const seo = useSelector(state => state.seo);
 
     React.useEffect(() => {
         // Remove the server-side injected CSS.
@@ -21,11 +23,7 @@ const MyApp = (props) => {
 
     return (
         <React.Fragment>
-            <Head>
-                <title>ELTYER | Documentation</title>
-                <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-                <link href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap" rel="stylesheet"/>
-            </Head>
+            <SEOHead title={seo.title} description={seo.description} image={seo.image} url={seo.url}/>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <Layout>
