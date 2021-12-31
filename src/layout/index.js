@@ -143,7 +143,11 @@ const Layout = props => {
                     minHeight: '100vh',
                 }}
             >
-                <AppBar className={clsx(lgDown? classes.appBarMobile : classes.appBar)} position={"sticky"}>
+                <AppBar
+                    className={clsx(lgDown? classes.appBarMobile : classes.appBar)}
+                    position={"sticky"}
+                    color={"inherit"}
+                >
                     <HeaderContent handleSideNavOpenClick={handleSideNavOpenClick}/>
                 </AppBar>
                 <SideNav
