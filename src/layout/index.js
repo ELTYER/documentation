@@ -12,18 +12,14 @@ import {useDispatch, useSelector} from "react-redux";
 import CircleProgress from "../components/loading/CircleProgress";
 import {sideNavOpenAction} from "../redux/actions";
 
-const drawerWidth = 256;
-
 const useStyles = makeStyles((theme) => ({
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
+        backgroundColor: theme.palette.white
     },
     appBarMobile: {
         zIndex: theme.zIndex.drawer - 1,
-    },
-    appBarSecond: {
-        zIndex: theme.zIndex.drawer + 1,
-        backgroundColor: theme.palette.primary.light
+        backgroundColor: theme.palette.white
     },
 }));
 
@@ -33,13 +29,23 @@ const Layout = props => {
     const layoutClasses = useLayoutStyles();
     const theme = useTheme();
     const pageLoading = useSelector(state => state.loading.pageLoading);
-    const smDown = useMediaQuery(theme.breakpoints.down("sm"));
+    const md = useMediaQuery(theme.breakpoints.only("md"));
+    const lgDown = useMediaQuery(theme.breakpoints.down("lg"));
     const dispatch = useDispatch();
     const sideNavOpen = useSelector(state => state.layout.sideNavOpen);
 
+    const getAppLogoLabel = () => {
+
+        if(md) {
+            return "Docs"
+        }
+
+        return "Documentation";
+    }
+
     const getSideNavOpen = () => {
 
-        if(!smDown) {
+        if(!lgDown) {
             return true;
         }
 
@@ -48,6 +54,10 @@ const Layout = props => {
 
     const getSideNavItems = () => {
         return [
+            {
+                id: 'spacerOne',
+                itemStyle: SIDE_NAV_ITEMS.spacer,
+            },
             {
                 id: 'spacerOne',
                 itemStyle: SIDE_NAV_ITEMS.spacer,
@@ -133,21 +143,22 @@ const Layout = props => {
                     minHeight: '100vh',
                 }}
             >
-                <AppBar className={clsx(smDown? classes.appBarMobile : classes.appBar)} position={"sticky"} color={"default"}>
+                <AppBar className={clsx(lgDown? classes.appBarMobile : classes.appBar)} position={"sticky"}>
                     <HeaderContent handleSideNavOpenClick={handleSideNavOpenClick}/>
                 </AppBar>
                 <SideNav
                     sideNavItems={getSideNavItems()}
                     sideNavOpen={getSideNavOpen()}
                     handleSideNavOpenClick={handleSideNavOpenClick}
+                    appLogoLabel={getAppLogoLabel()}
                 />
-                <div className={clsx(getSideNavOpen()? layoutClasses.contentShiftLeft : layoutClasses.contentShiftRight)}>
+                <div className={clsx((getSideNavOpen() && !md)? layoutClasses.contentShiftLeft : layoutClasses.contentShiftRight)}>
                     <Container component="main" sx={{ mt: 8, mb: 2 }} maxWidth="md">
                         {pageLoading? <CircleProgress/> : children}
                     </Container>
                 </div>
                 <Box
-                    className={clsx(getSideNavOpen()? layoutClasses.contentShiftLeft : layoutClasses.contentShiftRight, layoutClasses.footer)}
+                    className={clsx((getSideNavOpen() && !md)? layoutClasses.contentShiftLeft : layoutClasses.contentShiftRight, layoutClasses.footer)}
                     component="footer"
                     sx={{
                         justifyContent: 'center',

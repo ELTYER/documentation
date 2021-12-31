@@ -1,6 +1,5 @@
-# Investing Algorithm Framework Documentation website
-This repo holds the Investing Algorithm Framework Documentation website, 
-it is made with react and next js.
+# Eltyer Documentation website
+This repo holds the ELTYER Documentation website, it is made with react and next js.
 
 
 ## Setup
@@ -30,13 +29,3 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-
-## Special Thanks
-[![Vercel Logo](https://cdn.jsdelivr.net/gh/paizi/vue-test/vercel.svg)](https://vercel.com/?utm_source=investing-algorithm-framework&utm_campaign=oss)
-
-Powered by [Vercel](https://vercel.com/?utm_source=voice-editor&utm_campaign=oss)
-
-### Contributors
-* Marc van Duyn (MDUYN)
-* Sarah Vetter (sadays)

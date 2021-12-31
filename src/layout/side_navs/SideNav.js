@@ -24,15 +24,24 @@ const useStyles = makeStyles((theme) => ({
     },
     mobileDrawer: {
         width: '100%',
-    }
+    },
 }));
 
-export const SideNav = ({sideNavItems, footerItems, sideNavOpen = false, handleSideNavOpenClick, showAppLogo=true, appLogoLabel = "Documentation"}) => {
+export const SideNav = (
+    {
+        sideNavItems,
+        footerItems,
+        sideNavOpen = false,
+        handleSideNavOpenClick, showAppLogo=true,
+        appLogoLabel = null
+    }
+) => {
     const classes = useStyles();
     const sideNavClasses = useSideNavStyles();
     const router = useRouter();
     const theme = useTheme();
-    const smDown = useMediaQuery(theme.breakpoints.down("sm"));
+    const mdDown = useMediaQuery(theme.breakpoints.down("md"));
+    const md = useMediaQuery(theme.breakpoints.only("md"));
     const layoutClasses = useLayoutStyles();
 
     const handleLogoClick = () => {
@@ -69,7 +78,44 @@ export const SideNav = ({sideNavItems, footerItems, sideNavOpen = false, handleS
         )
     }
 
-    if(smDown) {
+    if(md) {
+
+        return (
+            <NoSsr>
+                <SwipeableDrawer
+                    PaperProps={{ elevation: 2}}
+                    open={sideNavOpen}
+                    onOpen={() => handleSideNavOpenClick(true)}
+                    onClose={() => handleSideNavOpenClick(false)}
+                    classes={{
+                        paper: classes.drawerPaper,
+                    }}
+                >
+                    <Stack
+                        direction="row"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        spacing={2}
+                    >
+                        <div>
+                            <AppLogo sideNavItem showText handleClick={handleLogoClick} label={appLogoLabel}/>
+                        </div>
+                        <IconButton onClick={() => handleSideNavOpenClick(false)} style={{marginRight: "4px"}}>
+                            <CloseIcon/>
+                        </IconButton>
+                    </Stack>
+                    <div className={sideNavClasses.sideNavListContainer}>
+                        {sideNavItems !== undefined && sideNavItems !== null && renderSideNavList(sideNavItems)}
+                    </div>
+                    <div className={sideNavClasses.sideNavListFooterContainer}>
+                        {footerItems !== undefined && footerItems !== null && renderSideNavList(footerItems)}
+                    </div>
+                </SwipeableDrawer>
+            </NoSsr>
+        )
+    }
+
+    if(mdDown) {
         return (
             <NoSsr>
                 <SwipeableDrawer
@@ -88,7 +134,7 @@ export const SideNav = ({sideNavItems, footerItems, sideNavOpen = false, handleS
                         alignItems="center"
                         spacing={2}
                     >
-                        <div style={{"overflow": "hidden"}}>
+                        <div>
                             <AppLogo sideNavItem showText handleClick={handleLogoClick} label={appLogoLabel}/>
                         </div>
                         <IconButton onClick={() => handleSideNavOpenClick(false)} style={{marginRight: "4px"}}>
@@ -113,11 +159,6 @@ export const SideNav = ({sideNavItems, footerItems, sideNavOpen = false, handleS
                 variant="persistent"
                 open={sideNavOpen}
             >
-                {showAppLogo &&
-                    <div style={{"overflow": "hidden"}}>
-                        <AppLogo sideNavItem showText handleClick={handleLogoClick} label={appLogoLabel}/>
-                    </div>
-                }
                 <div className={sideNavClasses.sideNavListContainer}>
                     {sideNavItems !== undefined && sideNavItems !== null && renderSideNavList(sideNavItems)}
                 </div>
