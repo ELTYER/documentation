@@ -228,4 +228,4 @@ export const useButtonStyles = makeStyles(theme => ({
             backgroundColor: `${alpha(theme.palette.primary.light, 0.2)} `,
         },
     }
-}),  { index: 2 });
+}), {name: "MuiCustomStyleButtons"});

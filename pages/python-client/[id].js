@@ -5,7 +5,6 @@ import {Contributing} from "../../src/components/articles";
 import {pageLoadingActions, sideNavValueAction} from "../../src/redux/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {wrapper} from "../../src/redux/store";
-import {consumeIterator} from "next/dist/build/babel/loader/util";
 import {setSEOVariablesAction} from "../../src/redux/actions/seo";
 
 

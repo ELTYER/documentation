@@ -8,7 +8,7 @@ const useStyles = makeStyles(() => ({
     markdown: {
         maxWidth: "1000px"
     }
-}));
+}), );
 
 export const MarkdownField = ({value}) => {
     const classes = useStyles();

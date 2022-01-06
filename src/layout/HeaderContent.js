@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
     githubIcon: {
         color: "#000000"
     }
-}));
+}), {  name: "MuiCustomStyleHeaderContent"});
 
 
 

@@ -57,4 +57,4 @@ export const useLogoStyles = makeStyles((theme) => ({
     appTextLarge: {
         height: "30px",
     }
-}), { index: 1 });
+}), {name: "MuiCustomStyleLogos"});

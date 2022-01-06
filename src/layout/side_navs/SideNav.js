@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     mobileDrawer: {
         width: '100%',
     },
-}));
+}), {  name: "MuiCustomStylfefofeaogkaokp"});
 
 export const SideNav = (
     {
@@ -81,88 +81,82 @@ export const SideNav = (
     if(md) {
 
         return (
-            <NoSsr>
-                <SwipeableDrawer
-                    PaperProps={{ elevation: 2}}
-                    open={sideNavOpen}
-                    onOpen={() => handleSideNavOpenClick(true)}
-                    onClose={() => handleSideNavOpenClick(false)}
-                    classes={{
-                        paper: classes.drawerPaper,
-                    }}
+            <SwipeableDrawer
+                PaperProps={{ elevation: 2}}
+                open={sideNavOpen}
+                onOpen={() => handleSideNavOpenClick(true)}
+                onClose={() => handleSideNavOpenClick(false)}
+                classes={{
+                    paper: classes.drawerPaper,
+                }}
+            >
+                <Stack
+                    direction="row"
+                    justifyContent="space-between"
+                    alignItems="center"
+                    spacing={2}
                 >
-                    <Stack
-                        direction="row"
-                        justifyContent="space-between"
-                        alignItems="center"
-                        spacing={2}
-                    >
-                        <div>
-                            <AppLogo sideNavItem showText handleClick={handleLogoClick} label={appLogoLabel}/>
-                        </div>
-                        <IconButton onClick={() => handleSideNavOpenClick(false)} style={{marginRight: "4px"}}>
-                            <CloseIcon/>
-                        </IconButton>
-                    </Stack>
-                    <div className={sideNavClasses.sideNavListContainer}>
-                        {sideNavItems !== undefined && sideNavItems !== null && renderSideNavList(sideNavItems)}
+                    <div>
+                        <AppLogo sideNavItem showText handleClick={handleLogoClick} label={appLogoLabel}/>
                     </div>
-                    <div className={sideNavClasses.sideNavListFooterContainer}>
-                        {footerItems !== undefined && footerItems !== null && renderSideNavList(footerItems)}
-                    </div>
-                </SwipeableDrawer>
-            </NoSsr>
+                    <IconButton onClick={() => handleSideNavOpenClick(false)} style={{marginRight: "4px"}}>
+                        <CloseIcon/>
+                    </IconButton>
+                </Stack>
+                <div className={sideNavClasses.sideNavListContainer}>
+                    {sideNavItems !== undefined && sideNavItems !== null && renderSideNavList(sideNavItems)}
+                </div>
+                <div className={sideNavClasses.sideNavListFooterContainer}>
+                    {footerItems !== undefined && footerItems !== null && renderSideNavList(footerItems)}
+                </div>
+            </SwipeableDrawer>
         )
     }
 
     if(mdDown) {
         return (
-            <NoSsr>
-                <SwipeableDrawer
-                    PaperProps={{ elevation: 2}}
-                    open={sideNavOpen}
-                    onOpen={() => handleSideNavOpenClick(true)}
-                    onClose={() => handleSideNavOpenClick(false)}
-                    classes={{
-                        paper: classes.mobileDrawer,
-                    }}
-                    className={clsx(sideNavOpen? layoutClasses.contentShiftRight : layoutClasses.contentShiftLeft)}
+            <SwipeableDrawer
+                PaperProps={{ elevation: 2}}
+                open={sideNavOpen}
+                onOpen={() => handleSideNavOpenClick(true)}
+                onClose={() => handleSideNavOpenClick(false)}
+                classes={{
+                    paper: classes.mobileDrawer,
+                }}
+                className={clsx(sideNavOpen? layoutClasses.contentShiftRight : layoutClasses.contentShiftLeft)}
+            >
+                <Stack
+                    direction="row"
+                    justifyContent="space-between"
+                    alignItems="center"
+                    spacing={2}
                 >
-                    <Stack
-                        direction="row"
-                        justifyContent="space-between"
-                        alignItems="center"
-                        spacing={2}
-                    >
-                        <div>
-                            <AppLogo sideNavItem showText handleClick={handleLogoClick} label={appLogoLabel}/>
-                        </div>
-                        <IconButton onClick={() => handleSideNavOpenClick(false)} style={{marginRight: "4px"}}>
-                            <CloseIcon/>
-                        </IconButton>
-                    </Stack>
-                    <div className={sideNavClasses.sideNavListContainer}>
-                        {sideNavItems !== undefined && sideNavItems !== null && renderSideNavList(sideNavItems)}
+                    <div>
+                        <AppLogo sideNavItem showText handleClick={handleLogoClick} label={appLogoLabel}/>
                     </div>
-                    <div className={sideNavClasses.sideNavListFooterContainer}>
-                        {footerItems !== undefined && footerItems !== null && renderSideNavList(footerItems)}
-                    </div>
-                </SwipeableDrawer>
-            </NoSsr>
+                    <IconButton onClick={() => handleSideNavOpenClick(false)} style={{marginRight: "4px"}}>
+                        <CloseIcon/>
+                    </IconButton>
+                </Stack>
+                <div className={sideNavClasses.sideNavListContainer}>
+                    {sideNavItems !== undefined && sideNavItems !== null && renderSideNavList(sideNavItems)}
+                </div>
+                <div className={sideNavClasses.sideNavListFooterContainer}>
+                    {footerItems !== undefined && footerItems !== null && renderSideNavList(footerItems)}
+                </div>
+            </SwipeableDrawer>
         )
     }
 
     return (
-        <NoSsr>
-            <Drawer
-                PaperProps={{ elevation: 2}}
-                variant="persistent"
-                open={sideNavOpen}
-            >
-                <div className={sideNavClasses.sideNavListContainer}>
-                    {sideNavItems !== undefined && sideNavItems !== null && renderSideNavList(sideNavItems)}
-                </div>
-            </Drawer>
-        </NoSsr>
+        <Drawer
+            PaperProps={{ elevation: 2}}
+            variant="persistent"
+            open={sideNavOpen}
+        >
+            <div className={sideNavClasses.sideNavListContainer}>
+                {sideNavItems !== undefined && sideNavItems !== null && renderSideNavList(sideNavItems)}
+            </div>
+        </Drawer>
     )
 }

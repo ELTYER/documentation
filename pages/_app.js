@@ -1,36 +1,46 @@
-import React from 'react';
-import Head from 'next/head';
+import React, {useEffect, useState} from 'react';
 import Layout from "../src/layout";
-import {useRouter, withRouter} from "next/router";
+import {withRouter, Router, useRouter} from "next/router";
 import {CssBaseline, ThemeProvider} from "@mui/material";
 import theme from "../src/styles/theme";
 import {wrapper} from '../src/redux/store';
 import {SEOHead} from "../src/layout/SEO";
-import {useSelector} from "react-redux";
+import {CacheProvider} from "@emotion/react";
+import createEmotionCache from "../src/createEmoitionCache";
+import SpinningWheelComponent from "../src/components/loading/CircleProgress";
+const clientSideEmotionCache = createEmotionCache();
 
+function MyApp(props) {
+    const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+    const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
-const MyApp = (props) => {
-    const { Component, pageProps } = props;
-    const seo = useSelector(state => state.seo);
+    useEffect(() => {
+        const handleStart = (url) => setLoading(true);
+        const handleComplete = (url) => setLoading(false);
 
-    React.useEffect(() => {
-        // Remove the server-side injected CSS.
-        const jssStyles = document.querySelector('#jss-server-side');
-        if (jssStyles) {
-            jssStyles.parentElement.removeChild(jssStyles);
+        router.events.on('routeChangeStart', handleStart)
+        router.events.on('routeChangeComplete', handleComplete)
+        router.events.on('routeChangeError', handleComplete)
+
+        return () => {
+            router.events.off('routeChangeStart', handleStart)
+            router.events.off('routeChangeComplete', handleComplete)
+            router.events.off('routeChangeError', handleComplete)
         }
-    }, []);
+    })
 
     return (
-        <React.Fragment>
-            <SEOHead title={seo.title} description={seo.description} image={seo.image} url={seo.url}/>
+        <CacheProvider value={emotionCache}>
+            <SEOHead/>
             <ThemeProvider theme={theme}>
+                {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                 <CssBaseline />
                 <Layout>
-                    <Component {...pageProps} />
+                    {loading? <SpinningWheelComponent style={{height: "80vh"}}/> : <Component {...pageProps} />}
                 </Layout>
             </ThemeProvider>
-        </React.Fragment>
+        </CacheProvider>
     );
 }
 

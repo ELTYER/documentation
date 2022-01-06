@@ -141,33 +141,4 @@ export const useSideNavStyles = makeStyles((theme) => ({
             duration: theme.transitions.duration.enteringScreen,
         }),
     },
-}));
-
-export const useMenuSideNavStyles = makeStyles((theme) => ({
-    sideNavMenuListItem: {
-        paddingLeft: theme.spacing(4),
-        "&:hover": {
-            backgroundColor: "#dfdbf2",
-        },
-    },
-    sideNavMenuListItemNoStyle: {
-        paddingLeft: theme.spacing(4),
-    },
-    sideNavListItemActive: {
-        backgroundColor: theme.palette.primary.main,
-    },
-    listItemHeaderText: {
-        fontSize: 14,
-    },
-    listItemText: {
-        fontSize: 14,
-        color: '#757575'
-    },
-    listItemActiveText: {
-        fontSize: 14,
-        color: "#ffffff",
-        "&:hover": {
-            color: theme.palette.primary.main,
-        },
-    },
-}), { index: 10 })
+}), {name: "MuiCustomStyleSideNav"});

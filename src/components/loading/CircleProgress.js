@@ -1,7 +1,7 @@
 import React from "react";
 import {CircularProgress, Grid} from "@mui/material";
 
-const SpinningWheelComponent = ({height = "80vh"}) => {
+const SpinningWheelComponent = ({style}) => {
 
     return (
         <Grid
@@ -10,7 +10,7 @@ const SpinningWheelComponent = ({height = "80vh"}) => {
             direction="column"
             alignItems="center"
             justifyContent="center"
-            style={{height: height}}
+            style={style}
         >
             <Grid item>
                 <CircularProgress/>

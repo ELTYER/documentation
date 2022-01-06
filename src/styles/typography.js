@@ -612,4 +612,4 @@ export const useTypographyStyles = makeStyles((theme) => ({
     sectionHeaderMargin: {
         marginBottom: theme.spacing(1)
     },
-}));
+}), {name: "MuiCustomStyleTypography"});

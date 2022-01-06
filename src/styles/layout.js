@@ -15,7 +15,12 @@ export const useLayoutStyles = makeStyles(theme => ({
         }
     },
     appBar: {
-        backgroundColor: theme.palette.background.default,
+        zIndex: theme.zIndex.drawer + 1,
+        backgroundColor: theme.palette.white
+    },
+    appBarMobile: {
+        zIndex: theme.zIndex.drawer - 1,
+        backgroundColor: theme.palette.white
     },
     developerDashboardAppBar: {
         backgroundColor: theme.palette.background.paper,
@@ -45,4 +50,4 @@ export const useLayoutStyles = makeStyles(theme => ({
             }),
         }
     },
-}));
+}), {  name: "MuiCustomStyleLayout"});

@@ -70,7 +70,7 @@ const useStyles = makeStyles(theme => ({
             backgroundColor: theme.palette.hover.default,
         },
     },
-}));
+}), {  name: "MuiCustomStyleThree"});
 
 export const AppLogo = ({sideNavItem = false, showText = true, clickAble = true, label = null, size = null, showEnvironmentText = false}) => {
     const classes = useStyles();

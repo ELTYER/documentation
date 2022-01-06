@@ -1,10 +1,8 @@
 import React from 'react';
-import {useRouter} from "next/router";
 import HeaderContent from "./HeaderContent";
 import Footer from "./Footer";
-import {useLayoutStyles, useSideNavStyles} from "../styles";
+import {useLayoutStyles} from "../styles";
 import {AppBar, Box, Container, useMediaQuery, useTheme} from "@mui/material";
-import {makeStyles} from "@mui/styles";
 import clsx from "clsx";
 import {SideNav} from "./side_navs";
 import {SIDE_NAV_ITEMS} from "../configuration";
@@ -12,20 +10,9 @@ import {useDispatch, useSelector} from "react-redux";
 import CircleProgress from "../components/loading/CircleProgress";
 import {sideNavOpenAction} from "../redux/actions";
 
-const useStyles = makeStyles((theme) => ({
-    appBar: {
-        zIndex: theme.zIndex.drawer + 1,
-        backgroundColor: theme.palette.white
-    },
-    appBarMobile: {
-        zIndex: theme.zIndex.drawer - 1,
-        backgroundColor: theme.palette.white
-    },
-}));
 
 const Layout = props => {
     const {children} = props;
-    const classes = useStyles();
     const layoutClasses = useLayoutStyles();
     const theme = useTheme();
     const pageLoading = useSelector(state => state.loading.pageLoading);
@@ -59,7 +46,7 @@ const Layout = props => {
                 itemStyle: SIDE_NAV_ITEMS.spacer,
             },
             {
-                id: 'spacerOne',
+                id: 'spacerTwo',
                 itemStyle: SIDE_NAV_ITEMS.spacer,
             },
             {
@@ -144,7 +131,7 @@ const Layout = props => {
                 }}
             >
                 <AppBar
-                    className={clsx(lgDown? classes.appBarMobile : classes.appBar)}
+                    className={clsx(lgDown? layoutClasses.appBarMobile : layoutClasses.appBar)}
                     position={"sticky"}
                     color={"inherit"}
                 >
@@ -158,7 +145,7 @@ const Layout = props => {
                 />
                 <div className={clsx((getSideNavOpen() && !md)? layoutClasses.contentShiftLeft : layoutClasses.contentShiftRight)}>
                     <Container component="main" sx={{ mt: 8, mb: 2 }} maxWidth="md">
-                        {pageLoading? <CircleProgress/> : children}
+                        {children}
                     </Container>
                 </div>
                 <Box
