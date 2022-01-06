@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {pageLoadingActions, sideNavValueAction} from "../../src/redux/actions";
 import {wrapper} from "../../src/redux/store";
 import {setSEOVariablesAction} from "../../src/redux/actions/seo";
+import {initialize} from "../../src/initialize";
 
 const View = ({markdown, articleSrc}) => {
 
@@ -44,6 +45,7 @@ export async function getStaticPaths() {
 
 export const getStaticProps = wrapper.getStaticProps((store) =>
     async ({ req, res, ...etc }) => {
+        await initialize(req, store);
         const markdown = await require(`../../src/articles/investing_algorithm_framework_plugin/${etc.params.id}.md`);
         let articleSrc = `https://github.com/eltyer/blob/master/src/articles/investing_algorithm_framework_plugin/${etc.params.id}.md`
         store.dispatch(sideNavValueAction(`investing-algorithm-framework-plugin-${etc.params.id}`));

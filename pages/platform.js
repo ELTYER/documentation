@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {pageLoadingActions, sideNavValueAction} from "../src/redux/actions";
 import {wrapper} from "../src/redux/store";
 import {setSEOVariablesAction} from "../src/redux/actions/seo";
+import {initialize} from "../src/initialize";
 
 const View = ({markdown, articleSrc}) => {
 
@@ -30,6 +31,7 @@ const DataContainer = ({markdown, articleSrc}) => {
 
 export const getServerSideProps = wrapper.getServerSideProps((store) =>
     async ({ req, res, ...etc }) => {
+        await initialize(req, store);
         const markdown = await require(`../src/articles/platform.md`);
         let articleSrc = `https://github.com/eltyer/documentation/blob/master/src/articles/platform.md`
         store.dispatch(sideNavValueAction("platform"));
