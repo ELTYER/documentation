@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, {PureComponent} from 'react';
-import Link from "../Link";
+import {Link} from "@mui/material";
 
 export default class MarkdownLink extends PureComponent {
     static propTypes = {
