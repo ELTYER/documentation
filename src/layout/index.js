@@ -7,7 +7,6 @@ import clsx from "clsx";
 import {SideNav} from "./side_navs";
 import {SIDE_NAV_ITEMS} from "../configuration";
 import {useDispatch, useSelector} from "react-redux";
-import CircleProgress from "../components/loading/CircleProgress";
 import {sideNavOpenAction} from "../redux/actions";
 
 
@@ -15,7 +14,6 @@ const Layout = props => {
     const {children} = props;
     const layoutClasses = useLayoutStyles();
     const theme = useTheme();
-    const pageLoading = useSelector(state => state.loading.pageLoading);
     const md = useMediaQuery(theme.breakpoints.only("md"));
     const lgDown = useMediaQuery(theme.breakpoints.down("lg"));
     const dispatch = useDispatch();
@@ -28,15 +26,6 @@ const Layout = props => {
         }
 
         return "Documentation";
-    }
-
-    const getSideNavOpen = () => {
-
-        if(!lgDown) {
-            return true;
-        }
-
-        return sideNavOpen;
     }
 
     const getSideNavItems = () => {
@@ -139,17 +128,17 @@ const Layout = props => {
                 </AppBar>
                 <SideNav
                     sideNavItems={getSideNavItems()}
-                    sideNavOpen={getSideNavOpen()}
+                    sideNavOpen={!lgDown || sideNavOpen}
                     handleSideNavOpenClick={handleSideNavOpenClick}
                     appLogoLabel={getAppLogoLabel()}
                 />
-                <div className={clsx((getSideNavOpen() && !md)? layoutClasses.contentShiftLeft : layoutClasses.contentShiftRight)}>
+                <div className={clsx((!lgDown || sideNavOpen)? layoutClasses.contentShiftLeft : layoutClasses.contentShiftRight)}>
                     <Container component="main" sx={{ mt: 8, mb: 2 }} maxWidth="md">
                         {children}
                     </Container>
                 </div>
                 <Box
-                    className={clsx((getSideNavOpen() && !md)? layoutClasses.contentShiftLeft : layoutClasses.contentShiftRight, layoutClasses.footer)}
+                    className={clsx((!lgDown || sideNavOpen)? layoutClasses.contentShiftLeft : layoutClasses.contentShiftRight, layoutClasses.footer)}
                     component="footer"
                     sx={{
                         justifyContent: 'center',
