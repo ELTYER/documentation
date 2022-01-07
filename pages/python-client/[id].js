@@ -6,7 +6,7 @@ import {pageLoadingActions, sideNavValueAction} from "../../src/redux/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {wrapper} from "../../src/redux/store";
 import {setSEOVariablesAction} from "../../src/redux/actions/seo";
-
+import {initialize} from "../../src/initialize";
 
 const View = ({markdown, articleSrc}) => {
 
@@ -45,6 +45,7 @@ export async function getStaticPaths() {
 
 export const getStaticProps = wrapper.getStaticProps((store) =>
     async ({ req, res, ...etc }) => {
+        await initialize(req, store);
         const markdown = await require(`../../src/articles/python_client/${etc.params.id}.md`);
         let articleSrc = `https://github.com/eltyer/blob/master/src/articles/python_client/${etc.params.id}.md`
         store.dispatch(sideNavValueAction(`python-client-${etc.params.id}`));

@@ -1,14 +1,15 @@
 import {sideNavOpenAction} from "./redux/actions";
-import Cookies from 'universal-cookie';
-import {SIDE_NAV_OPEN} from "./redux/types";
 
 export async function initialize(req, store) {
-    const cookies = new Cookies(req.headers.cookie);
-    let sideNavValue = cookies.get(SIDE_NAV_OPEN, "/");
 
-    if(sideNavValue === undefined) {
-        store.dispatch(sideNavOpenAction(false));
-    } else {
-        store.dispatch(sideNavOpenAction(sideNavValue === 'true'));
+    if(req!== null && req !== undefined) {
+        const UA = req.headers['user-agent'];
+        const isMobile = Boolean(UA.match(
+            /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
+        ))
+
+        if(isMobile) {
+            store.dispatch(sideNavOpenAction(false));
+        }
     }
 }

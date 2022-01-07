@@ -1,6 +1,5 @@
-import Link from "../../Link";
 import React from "react";
-import {Divider, Typography} from "@mui/material";
+import {Divider, Link, Typography} from "@mui/material";
 
 export const Contributing = ({source}) => {
     return (

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Divider, Paper, Typography} from "@mui/material";
-import Link from "../Link";
+import {Divider, Link, Paper, Typography} from "@mui/material";
 import {AppLogo} from "../components/logos";
 import {usePaperStyles, useTypographyStyles} from "../styles";
 

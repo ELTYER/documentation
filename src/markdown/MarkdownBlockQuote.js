@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {Alert} from "@mui/lab";
+import {Alert} from "@mui/material";
 
 export default class MarkdownBlockQuote extends PureComponent {
     render() {

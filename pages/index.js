@@ -5,6 +5,7 @@ import {pageLoadingActions, sideNavValueAction} from "../src/redux/actions";
 import {Contributing} from "../src/components/articles";
 import {wrapper} from "../src/redux/store";
 import {setSEOVariablesAction} from "../src/redux/actions/seo";
+import {initialize} from "../src/initialize";
 
 const View = ({markdown, articleSrc}) => {
 
@@ -31,6 +32,7 @@ const DataContainer = ({markdown, articleSrc}) => {
 export const getServerSideProps = wrapper.getServerSideProps((store) =>
 
     async ({ req, res, ...etc }) => {
+        await initialize(req, store);
         const markdown = await require(`../src/articles/home.md`);
         let articleSrc = `https://github.com/eltyer/documentation/blob/master/src/articles/home.md`
         store.dispatch(sideNavValueAction("home"));
