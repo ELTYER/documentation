@@ -15,7 +15,6 @@ const Layout = props => {
     const {children} = props;
     const layoutClasses = useLayoutStyles();
     const theme = useTheme();
-    const pageLoading = useSelector(state => state.loading.pageLoading);
     const md = useMediaQuery(theme.breakpoints.only("md"));
     const lgDown = useMediaQuery(theme.breakpoints.down("lg"));
     const dispatch = useDispatch();
@@ -28,15 +27,6 @@ const Layout = props => {
         }
 
         return "Documentation";
-    }
-
-    const getSideNavOpen = () => {
-
-        if(!lgDown) {
-            return true;
-        }
-
-        return sideNavOpen;
     }
 
     const getSideNavItems = () => {
@@ -139,17 +129,17 @@ const Layout = props => {
                 </AppBar>
                 <SideNav
                     sideNavItems={getSideNavItems()}
-                    sideNavOpen={getSideNavOpen()}
+                    sideNavOpen={sideNavOpen}
                     handleSideNavOpenClick={handleSideNavOpenClick}
                     appLogoLabel={getAppLogoLabel()}
                 />
-                <div className={clsx((getSideNavOpen() && !md)? layoutClasses.contentShiftLeft : layoutClasses.contentShiftRight)}>
+                <div className={clsx((sideNavOpen && !md)? layoutClasses.contentShiftLeft : layoutClasses.contentShiftRight)}>
                     <Container component="main" sx={{ mt: 8, mb: 2 }} maxWidth="md">
                         {children}
                     </Container>
                 </div>
                 <Box
-                    className={clsx((getSideNavOpen() && !md)? layoutClasses.contentShiftLeft : layoutClasses.contentShiftRight, layoutClasses.footer)}
+                    className={clsx((sideNavOpen && !md)? layoutClasses.contentShiftLeft : layoutClasses.contentShiftRight, layoutClasses.footer)}
                     component="footer"
                     sx={{
                         justifyContent: 'center',

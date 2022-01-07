@@ -13,7 +13,7 @@ import {SideNavLink} from "./SideNavLink";
 import {SideNavTextItem} from "./SideNavTextItem";
 import {SideNavIndentedTextItem} from "./SideNavIndentedTextItem";
 import {SideNavIconTextItem} from "./SideNavIconTextItem";
-import {Drawer, IconButton, List, NoSsr, Stack, SwipeableDrawer, useMediaQuery, useTheme} from "@mui/material";
+import {Drawer, IconButton, List, Stack, SwipeableDrawer, useMediaQuery, useTheme} from "@mui/material";
 import {makeStyles} from "@mui/styles";
 import CloseIcon from '@mui/icons-material/Close';
 import clsx from "clsx";
@@ -150,9 +150,15 @@ export const SideNav = (
 
     return (
         <Drawer
+            variant={"persistent"}
             PaperProps={{ elevation: 2}}
-            variant="persistent"
             open={sideNavOpen}
+            onOpen={() => handleSideNavOpenClick(true)}
+            onClose={() => handleSideNavOpenClick(false)}
+            classes={{
+                paper: classes.drawerPaper,
+            }}
+            className={clsx(sideNavOpen? layoutClasses.contentShiftRight : layoutClasses.contentShiftLeft)}
         >
             <div className={sideNavClasses.sideNavListContainer}>
                 {sideNavItems !== undefined && sideNavItems !== null && renderSideNavList(sideNavItems)}

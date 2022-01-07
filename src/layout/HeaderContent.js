@@ -23,7 +23,6 @@ const HeaderContent = ({handleSideNavOpenClick}) => {
     const logoClasses = useLogoStyles();
     const theme = useTheme();
     const smDown = useMediaQuery(theme.breakpoints.down("sm"));
-    const lgDown = useMediaQuery(theme.breakpoints.down("lg"));
 
     return (
         <Toolbar style={{paddingLeft: 0}}>
@@ -38,14 +37,12 @@ const HeaderContent = ({handleSideNavOpenClick}) => {
                     justifyContent="flex-start"
                     alignItems="center"
                 >
-                    {lgDown &&
-                        <IconButton
-                            style={{marginLeft: "4px"}}
-                            onClick={() => handleSideNavOpenClick()}
-                        >
-                            <MenuIcon/>
-                        </IconButton>
-                    }
+                    <IconButton
+                        style={{marginLeft: "4px"}}
+                        onClick={() => handleSideNavOpenClick()}
+                    >
+                        <MenuIcon/>
+                    </IconButton>
                     <AppLogo label={"Documentation"}/>
                 </Stack>
                 <Stack
